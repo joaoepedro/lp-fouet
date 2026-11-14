@@ -1,0 +1,90 @@
+/* =========================================================
+   Identidade visual: Fouet
+   Paleta da marca: chocolate #4B2A06, taupe #9C8262, rosa #F9C2D2,
+   framboesa #E45A82 e o pistache do logo #C3CC5F.
+   Direção de cor aprovada: pistache (botões no verde do logo).
+   Contraste (WCAG 2.2) anotado em cada par de texto. Mínimo AA: 4,5:1.
+   Teste completo em docs/contraste.md.
+   ========================================================= */
+
+/* Títulos: Gloock (substituta livre da Rigot, licença OFL).
+   Frases manuscritas: Mrs Saint Delafield (substituta livre da Moontime, OFL).
+   Texto: Poppins (OFL). O nome da marca é sempre a imagem do logo.
+   Para usar as fontes originais: troque os arquivos em assets/fonts
+   e os nomes em --fonte-titulo e --fonte-manuscrita (ver README). */
+@font-face {
+    font-family: "Gloock";
+    font-weight: 400;
+    font-display: swap;
+    src: url(../assets/fonts/gloock.woff2) format("woff2");
+}
+@font-face {
+    font-family: "Mrs Saint Delafield";
+    font-weight: 400;
+    font-display: swap;
+    src: url(../assets/fonts/mrs-saint-delafield.woff2) format("woff2");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-display: swap;
+    src: url(../assets/fonts/poppins-400.woff2) format("woff2");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-display: swap;
+    src: url(../assets/fonts/poppins-500.woff2) format("woff2");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-display: swap;
+    src: url(../assets/fonts/poppins-600.woff2) format("woff2");
+}
+
+/* Cores, tipografia e espaços */
+:root {
+    --chocolate: #4b2a06;
+    --taupe: #9c8262; /* só enfeite: 3,35:1 sobre creme, não serve para texto */
+    --rosa: #f9c2d2;
+    --framboesa-texto: #b0365d; /* framboesa #e45a82 escurecida para texto: 5,5:1 sobre creme */
+    --pistache: #c3cc5f;
+
+    --cor-fundo: #fbf5ec; /* creme */
+    --cor-fundo-alt: #fce8ee; /* rosa bem claro */
+    --cor-fundo-escuro: var(--chocolate);
+    --cor-texto: var(--chocolate); /* sobre creme 11,9:1 · sobre rosa claro 11,0:1 */
+    --cor-texto-suave: #6b5539; /* taupe escurecido: sobre creme 6,5:1 · sobre rosa claro 6,0:1 */
+    --cor-texto-claro: #fbf5ec; /* sobre chocolate 11,9:1 */
+    --cor-whats: #0f7a3f; /* texto branco 5,4:1 */
+    --cor-linha: #ead9c8;
+    --cor-cartao: #ffffff;
+
+    --cor-marca: var(--chocolate); /* títulos e preços: 11,9:1 */
+    --cor-acento: var(--framboesa-texto); /* frases manuscritas: 5,5:1 */
+    --cor-destaque: var(--pistache); /* botão principal: texto chocolate 7,4:1 */
+    --cor-destaque-texto: var(--chocolate);
+    --cor-destaque-hover: #cfd77a; /* texto chocolate 8,4:1 */
+    --cor-claro: var(--pistache); /* botão sobre fundo escuro: texto chocolate 7,4:1 */
+    --cor-claro-texto: var(--chocolate);
+    --cor-claro-hover: #cfd77a;
+    --cor-moldura: var(--pistache); /* listras do rodapé */
+    --cor-selo: var(--rosa); /* etiquetas de preço: chocolate 8,4:1 */
+    --cor-frase-escuro: var(--pistache); /* manuscrito sobre chocolate: 7,4:1 */
+
+    /* Tipografia */
+    --fonte-titulo: "Gloock", "Rigot", "Didot", Georgia, serif;
+    --fonte-manuscrita: "Mrs Saint Delafield", "Moontime", cursive;
+    --fonte-texto: "Poppins", system-ui, sans-serif;
+    --t-h2: clamp(2.1rem, 5.5vw, 3.4rem);
+    --t-h3: clamp(1.25rem, 3vw, 1.5rem);
+    --t-corpo: 1rem;
+
+    /* Espaços e forma */
+    --largura: 72rem;
+    --gutter: clamp(1.25rem, 5vw, 3rem);
+    --secao: clamp(4rem, 10vw, 7rem);
+    --raio: 1.25rem;
+    --topo-altura: 4.5rem;
+}

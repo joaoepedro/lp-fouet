@@ -1,0 +1,8 @@
+# Libera o rastreamento de todo o site.
+# Enquanto for DEMONSTRAÇÃO, a página fica fora do Google pelo noindex
+# (meta robots no index.html e X-Robots-Tag no _headers), não por aqui:
+# o Google precisa conseguir abrir a página para ler o noindex.
+User-agent: *
+Allow: /
+
+Sitemap: https://lp-fouet.pages.dev/sitemap.xml

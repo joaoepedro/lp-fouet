@@ -1,0 +1,1765 @@
+/* =========================================================
+   Estilo do site: Fouet Studio
+   Pâtisserie elegante e acolhedora: creme, chocolate e rosa,
+   listras de toldo na moldura, janelas em arco e frases manuscritas.
+   A cor dos botões e da moldura muda com a direção (css/variables.css).
+   ========================================================= */
+
+/* 1. Base */
+body {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: var(--fonte-texto);
+    font-size: var(--t-corpo);
+    line-height: 1.6;
+    overflow-x: clip;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+}
+h2 {
+    font-size: var(--t-h2);
+    color: var(--cor-marca);
+}
+strong,
+b {
+    font-weight: 600;
+}
+.container {
+    width: min(100% - 2 * var(--gutter), var(--largura));
+    margin-inline: auto;
+}
+.container--estreito {
+    max-width: 46rem;
+}
+.secao__sub {
+    margin-top: 0.85rem;
+    max-width: 38rem;
+    color: var(--cor-texto-suave);
+}
+.secao__sub strong {
+    color: var(--cor-texto);
+}
+/* frase manuscrita acima dos títulos */
+.secao__manuscrito {
+    font-family: var(--fonte-manuscrita);
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    line-height: 1;
+    color: var(--cor-acento);
+    margin-bottom: 0.15rem;
+    transform: rotate(-3deg);
+    transform-origin: left center;
+}
+:focus-visible {
+    outline: 3px solid var(--cor-texto);
+    outline-offset: 3px;
+}
+/* listras de toldo de pâtisserie */
+.listras {
+    height: 1.25rem;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--cor-moldura) 0 1.25rem,
+        var(--cor-fundo) 1.25rem 2.5rem
+    );
+}
+
+/* 2. Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+.btn--claro {
+    background: var(--cor-claro);
+    color: var(--cor-claro-texto);
+}
+.btn--claro:hover {
+    background: var(--cor-claro-hover);
+}
+.btn--contorno {
+    border: 1.5px solid currentColor;
+    color: var(--cor-texto-claro);
+}
+.btn--contorno:hover {
+    background: rgb(251 245 236 / 0.12);
+}
+.btn--marca {
+    background: var(--cor-destaque);
+    color: var(--cor-destaque-texto);
+}
+.btn--marca:hover {
+    background: var(--cor-destaque-hover);
+}
+.btn--whats {
+    background: var(--cor-whats);
+    color: #fff;
+}
+.btn:focus-visible {
+    outline-color: var(--cor-fundo);
+    box-shadow: 0 0 0 6px var(--cor-texto);
+}
+
+/* 3. Topo e menu */
+[data-topo] {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: var(--topo-altura);
+    display: grid;
+    grid-template-columns: 3rem 1fr 3rem;
+    align-items: center;
+    padding-inline: var(--gutter);
+    color: var(--cor-texto-claro);
+    transition: background-color 0.25s ease;
+}
+[data-topo] :focus-visible,
+.cardapio :focus-visible,
+.atalhos :focus-visible,
+.eventos :focus-visible,
+.rodape :focus-visible,
+.abertura :focus-visible {
+    outline-color: var(--cor-texto-claro);
+}
+[data-topo][data-rolou],
+[data-topo]:has([data-menu][data-aberto]) {
+    background: var(--cor-fundo-escuro);
+}
+.topo__marca {
+    grid-column: 2;
+    justify-self: center;
+}
+.topo__marca img {
+    height: 3rem;
+    width: auto;
+}
+.topo__menu {
+    grid-column: 1;
+    grid-row: 1;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+}
+.hamburguer {
+    display: grid;
+    gap: 5px;
+    width: 1.5rem;
+}
+.hamburguer i {
+    display: block;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 2px;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+[aria-expanded="true"] .hamburguer i:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+[aria-expanded="true"] .hamburguer i:nth-child(2) {
+    opacity: 0;
+}
+[aria-expanded="true"] .hamburguer i:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+.topo__sacola {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    position: relative;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+}
+.topo__qtd {
+    position: absolute;
+    top: 0;
+    right: -0.15rem;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    padding-inline: 0.3rem;
+    border-radius: 999px;
+    background: var(--cor-claro);
+    color: var(--cor-claro-texto);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.35rem;
+    text-align: center;
+}
+[data-menu] {
+    position: absolute;
+    inset: var(--topo-altura) 0 auto;
+    background: var(--cor-fundo-escuro);
+    padding: 0.5rem var(--gutter) 1.5rem;
+}
+.js [data-menu]:not([data-aberto]) {
+    display: none;
+}
+[data-menu] a {
+    display: block;
+    padding: 0.85rem 0;
+    font-family: var(--fonte-titulo);
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(251 245 236 / 0.15);
+}
+@media (min-width: 60rem) {
+    [data-topo] {
+        grid-template-columns: auto 1fr auto;
+        gap: 2rem;
+    }
+    .topo__marca {
+        grid-column: 1;
+        justify-self: start;
+    }
+    .topo__marca img {
+        height: 3.25rem;
+    }
+    .topo__menu {
+        display: none;
+    }
+    .js [data-menu]:not([data-aberto]),
+    [data-menu] {
+        display: block;
+        position: static;
+        background: none;
+        padding: 0;
+        justify-self: end;
+    }
+    [data-menu] ul {
+        display: flex;
+        gap: 1.75rem;
+    }
+    [data-menu] a {
+        font-family: var(--fonte-texto);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: none;
+        padding: 0.5rem 0;
+        border: 0;
+    }
+    [data-menu] a:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.35em;
+    }
+}
+
+/* 4. Primeira tela: vídeo de ponta a ponta com o logo no centro */
+.abertura {
+    min-height: 100svh;
+}
+.abertura__painel {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    background: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+    isolation: isolate;
+    overflow: hidden;
+}
+.abertura__foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 40%;
+    z-index: -2;
+}
+.abertura__veu {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(
+            ellipse 62% 55% at 50% 52%,
+            rgb(58 32 4 / 0.84) 0,
+            rgb(58 32 4 / 0.66) 55%,
+            rgb(58 32 4 / 0.4) 100%
+        ),
+        linear-gradient(to bottom, rgb(58 32 4 / 0.6), transparent 22%);
+}
+.abertura__miolo {
+    display: grid;
+    justify-items: center;
+    width: min(100% - 2 * var(--gutter), 46rem);
+    padding-block: calc(var(--topo-altura) + 0.5rem) 2.5rem;
+    text-align: center;
+}
+.abertura__marca {
+    position: relative;
+    width: min(86vw, 36rem);
+}
+.abertura__marca h1 img {
+    width: 100%;
+    filter: drop-shadow(0 0.6rem 1.4rem rgb(30 16 2 / 0.45));
+}
+@keyframes aceno {
+    0%,
+    100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(-3deg) translateY(-0.3rem);
+    }
+}
+.abertura__frase {
+    margin-top: clamp(0.75rem, 2svh, 1.25rem);
+    font-family: var(--fonte-manuscrita);
+    font-size: clamp(2.4rem, 7vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--cor-frase-escuro, var(--rosa));
+    text-shadow: 0 2px 14px rgb(30 16 2 / 0.55);
+}
+.abertura__local {
+    margin-top: 0.75rem;
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgb(251 245 236 / 0.55);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+.abertura__botoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: clamp(1.25rem, 3svh, 2rem);
+}
+@media (max-width: 30rem) {
+    .abertura__botoes {
+        width: 100%;
+    }
+    .abertura__botoes .btn {
+        flex: 1 1 100%;
+    }
+}
+/* No topo da página o logo grande já aparece: o do topo só surge depois de rolar.
+   No computador, os links do menu também; o carrinho fica sempre visível. */
+@media (min-width: 60rem) {
+    [data-menu] {
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s;
+    }
+    [data-topo]:not([data-rolou]) [data-menu] {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+[data-topo]:not([data-rolou]) .topo__marca {
+    opacity: 0;
+    pointer-events: none;
+}
+.topo__marca {
+    transition: opacity 0.25s ease;
+}
+
+/* 5. Cardápio: painéis creme sobre chocolate */
+.cardapio {
+    padding-block: var(--secao);
+    background: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+}
+.cardapio h2 {
+    color: var(--cor-texto-claro);
+}
+.cardapio .secao__sub {
+    color: rgb(251 245 236 / 0.86);
+}
+.cardapio .secao__manuscrito {
+    color: var(--cor-frase-escuro, var(--rosa));
+}
+/* Atalhos fixos sob o topo, da vitrine até as festas (ficam dentro de .area-pedido) */
+.atalhos {
+    --margem: max(var(--gutter), (100% - var(--largura)) / 2);
+    position: sticky;
+    top: calc(var(--topo-altura) - 1px);
+    z-index: 30;
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.75rem var(--margem);
+    background: var(--cor-fundo-escuro);
+    box-shadow: 0 6px 12px -8px rgb(30 16 2 / 0.45);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--margem);
+    scrollbar-width: none;
+    transform: translateZ(0);
+}
+.atalhos::-webkit-scrollbar {
+    display: none;
+}
+.atalhos a {
+    flex: none;
+    scroll-snap-align: start;
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.4rem 1.1rem;
+    border: 1.5px solid var(--cor-claro);
+    border-radius: 999px;
+    color: var(--cor-texto-claro);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.atalhos a[aria-current="true"] {
+    background: var(--cor-claro);
+    color: var(--cor-claro-texto);
+}
+@media (hover: hover) {
+    .atalhos a:hover {
+        background: var(--cor-claro);
+        color: var(--cor-claro-texto);
+    }
+}
+.area-pedido :is(.categoria, #caixa, #encomendas, #tortas, #festas, #eventos) {
+    scroll-margin-top: calc(var(--topo-altura) + 4.75rem);
+}
+.atalhos b {
+    font-weight: 400;
+    opacity: 0.85;
+}
+.categoria {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    border-radius: 1.75rem;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+.categoria__titulo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: clamp(1.9rem, 4.6vw, 2.5rem);
+}
+.categoria__titulo .categoria__faixa {
+    font-family: var(--fonte-texto);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 0.15rem 0.8rem;
+    border-radius: 999px;
+    background: var(--cor-selo);
+    color: var(--chocolate);
+}
+.grade-doces {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+    gap: 2rem 1.5rem;
+    margin-top: 1.5rem;
+}
+.doce {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    gap: 0.55rem;
+}
+.doce img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 50% 50% 1rem 1rem / 40% 40% 1rem 1rem;
+    background: var(--cor-fundo-alt);
+    transition: transform 0.4s ease;
+}
+.doce:hover img {
+    transform: scale(1.02);
+}
+.doce__nome {
+    font-size: 1.45rem;
+    color: var(--cor-texto);
+}
+.doce__desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--cor-texto-suave);
+}
+.doce__rodape {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--cor-linha);
+}
+.doce__preco {
+    font-family: var(--fonte-titulo);
+    font-size: 1.35rem;
+    color: var(--cor-marca);
+}
+.doce__peso {
+    font-size: 0.85rem;
+    color: var(--cor-texto-suave);
+}
+.btn-add {
+    width: 100%;
+    min-height: 2.9rem;
+    border-radius: 999px;
+    background: var(--cor-destaque);
+    color: var(--cor-destaque-texto);
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+}
+.btn-add:hover {
+    background: var(--cor-destaque-hover);
+}
+.qtd {
+    display: grid;
+    grid-template-columns: 2.9rem 1fr 2.9rem;
+    align-items: center;
+    min-height: 2.9rem;
+    border-radius: 999px;
+    background: var(--cor-fundo-alt);
+    color: var(--cor-texto);
+    text-align: center;
+    font-weight: 600;
+}
+.qtd button {
+    height: 2.9rem;
+    border-radius: 999px;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--cor-texto);
+}
+.qtd button:hover:not(:disabled) {
+    background: var(--rosa);
+}
+.qtd button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+@media (max-width: 39.99rem) {
+    .grade-doces {
+        gap: 0.75rem;
+    }
+    .doce {
+        grid-template-columns: 6.5rem 1fr;
+        grid-template-rows: auto;
+        grid-row: auto;
+        column-gap: 1rem;
+        row-gap: 0.3rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--cor-linha);
+    }
+    .doce:last-child {
+        border: 0;
+        padding-bottom: 0;
+    }
+    .doce img {
+        grid-row: 1 / span 4;
+        align-self: start;
+        border-radius: 50% 50% 0.75rem 0.75rem / 40% 40% 0.75rem 0.75rem;
+    }
+    .doce__nome {
+        font-size: 1.25rem;
+    }
+    .doce__desc {
+        font-size: 0.85rem;
+    }
+    .doce__rodape {
+        padding-top: 0.35rem;
+    }
+}
+
+/* 6. Caixa presente */
+.caixa {
+    padding-block: var(--secao);
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+.caixa__grade {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+}
+.caixa__texto p {
+    margin-top: 1rem;
+    max-width: 28rem;
+}
+.caixa__texto strong {
+    color: var(--cor-marca);
+}
+.caixa__nota,
+.rodape__frase {
+    font-family: var(--fonte-manuscrita);
+    line-height: 1.1;
+}
+.caixa__nota {
+    color: var(--cor-acento);
+    font-size: 2.3rem;
+}
+.caixa__mascote {
+    width: 5.5rem;
+    margin-bottom: 1rem;
+    transform: rotate(-8deg);
+}
+.combo {
+    display: grid;
+    gap: 1.25rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border-radius: var(--raio);
+    background: var(--cor-fundo-alt);
+    color: var(--cor-texto);
+    border: 1.5px solid var(--cor-texto);
+}
+.combo__slots {
+    display: grid;
+    gap: 0.85rem;
+}
+.combo__slot {
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+select,
+input,
+textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid var(--cor-linha);
+    border-radius: 0.75rem;
+    background: var(--cor-cartao);
+    color: var(--cor-texto);
+    font-weight: 400;
+}
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    border-color: var(--cor-texto);
+    outline-offset: 1px;
+}
+.combo__total {
+    font-size: 1.05rem;
+}
+.combo__total strong {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.8rem;
+    color: var(--cor-marca);
+}
+.combo .btn {
+    width: 100%;
+}
+@media (min-width: 52rem) {
+    .caixa__grade {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 4rem;
+    }
+    .combo__slots {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 7. Encomendas (bolos e tortas) e festas */
+.encomendas {
+    padding-block: var(--secao);
+    background: var(--cor-fundo-alt);
+}
+.festas {
+    padding-block: var(--secao);
+    background: var(--cor-cartao);
+}
+.encomendas__sub {
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+    font-size: clamp(1.8rem, 4.4vw, 2.5rem);
+    color: var(--cor-marca);
+}
+.grade-encomendas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+.encomenda {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 8;
+    gap: 0.6rem;
+    padding: 1rem 1rem 1.25rem;
+    border-radius: var(--raio);
+    background: var(--cor-cartao);
+    box-shadow: 0 1px 0 var(--cor-linha), 0 0.75rem 2rem -1.25rem rgb(75 42 6 / 0.35);
+}
+.encomenda--festa {
+    background: var(--cor-fundo);
+}
+.encomenda img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.85rem;
+}
+.encomenda__nome {
+    margin-top: 0.4rem;
+    font-size: 1.6rem;
+    color: var(--cor-marca);
+}
+.encomenda__desc {
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.encomenda__preco {
+    font-family: var(--fonte-titulo);
+    font-size: 1.45rem;
+}
+.encomenda__unidade {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.campo {
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.campo small {
+    font-weight: 400;
+    color: var(--cor-texto-suave);
+}
+.encomenda .btn {
+    width: 100%;
+    margin-top: 0.4rem;
+}
+/* Tamanhos do bolo: botões de escolha com peso, porções e preço */
+.tamanhos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.tamanhos legend {
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.tamanhos label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+.tamanhos input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.tamanhos label > span {
+    display: grid;
+    gap: 0.05rem;
+    height: 100%;
+    padding: 0.55rem 0.6rem;
+    border: 1.5px solid var(--cor-linha);
+    border-radius: 0.75rem;
+    background: var(--cor-cartao);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    text-align: center;
+}
+.tamanhos b {
+    display: block;
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+.tamanhos small {
+    display: block;
+    color: var(--cor-texto-suave);
+}
+.tamanhos em {
+    display: block;
+    margin-top: 0.15rem;
+    font-style: normal;
+    font-weight: 600;
+}
+.tamanhos label:hover > span {
+    border-color: var(--taupe);
+}
+.tamanhos input:checked + span {
+    border-color: var(--cor-texto);
+    background: var(--cor-fundo-alt);
+    box-shadow: inset 0 0 0 1px var(--cor-texto);
+}
+.tamanhos input:focus-visible + span {
+    outline: 3px solid var(--cor-texto);
+    outline-offset: 2px;
+}
+.qtd--festa {
+    background: var(--cor-cartao);
+    border: 1.5px solid var(--cor-linha);
+    font-size: 1.1rem;
+}
+.eventos {
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    border-radius: 1.75rem;
+    background: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+    overflow: hidden;
+}
+/* sobre o chocolate, o traço marrom do mascote ganha um contorno creme fino */
+.eventos__mascote {
+    filter: drop-shadow(1.5px 0 0 var(--cor-fundo))
+        drop-shadow(-1.5px 0 0 var(--cor-fundo))
+        drop-shadow(0 1.5px 0 var(--cor-fundo))
+        drop-shadow(0 -1.5px 0 var(--cor-fundo));
+    width: 6rem;
+    transform: rotate(-8deg);
+    animation: aceno 3.5s ease-in-out infinite;
+    transform-origin: 50% 90%;
+}
+.eventos h3 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+}
+.eventos p {
+    margin-block: 0.6rem 1.25rem;
+    max-width: 36rem;
+    color: rgb(251 245 236 / 0.9);
+}
+@media (min-width: 44rem) {
+    .eventos {
+        grid-template-columns: 10rem 1fr;
+        gap: 2.5rem;
+    }
+    .eventos__mascote {
+        width: 7.5rem;
+        justify-self: center;
+    }
+}
+
+/* 8. Como pedir */
+.como {
+    padding-block: var(--secao);
+}
+.passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+.passos li {
+    padding: 1.5rem;
+    border-radius: var(--raio);
+    background: var(--cor-cartao);
+    border: 1px solid var(--cor-linha);
+}
+.passos__n {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--cor-destaque);
+    color: var(--cor-destaque-texto);
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+}
+.passos h3 {
+    margin-top: 1rem;
+    font-size: var(--t-h3);
+}
+.passos p {
+    margin-top: 0.4rem;
+    color: var(--cor-texto-suave);
+}
+
+/* 9. Dúvidas */
+.duvidas {
+    padding-block: var(--secao);
+}
+.duvidas h2 {
+    margin-bottom: 1.5rem;
+}
+details {
+    border-bottom: 1px solid var(--cor-linha);
+}
+summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+summary::after {
+    content: "+";
+    flex: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--cor-texto);
+}
+details[open] summary::after {
+    content: "−";
+}
+details p {
+    padding-bottom: 1.25rem;
+    color: var(--cor-texto-suave);
+}
+details a {
+    color: var(--cor-texto);
+    font-weight: 600;
+}
+
+/* 10. Rodapé */
+.rodape {
+    position: relative;
+    background: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+}
+.rodape__mascote {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 5.5rem;
+    transform: translate(-50%, -96%) rotate(-4deg);
+    filter: drop-shadow(0 0.4rem 0.6rem rgb(30 16 2 / 0.25));
+}
+.rodape__miolo {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: 4rem var(--gutter) 7rem;
+    text-align: center;
+}
+.rodape__logo {
+    width: 14rem;
+}
+.rodape__frase {
+    font-size: 2rem;
+    color: var(--cor-frase-escuro, var(--rosa));
+}
+.rodape address {
+    font-style: normal;
+}
+.rodape__redes {
+    display: flex;
+    gap: 0.75rem;
+}
+.rodape__redes a {
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 50%;
+    background: rgb(251 245 236 / 0.12);
+}
+.icone-ifood {
+    width: 1.5rem;
+    height: auto;
+}
+.rodape__redes a:hover {
+    background: rgb(251 245 236 / 0.24);
+}
+.rodape__direitos {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+/* 11. Barra do pedido e WhatsApp flutuante */
+.barra-pedido {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 40;
+    padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+    pointer-events: none;
+    transform: translateY(120%);
+    transition: transform 0.3s ease;
+}
+.barra-pedido[data-mostrar] {
+    transform: none;
+}
+.barra-pedido button {
+    pointer-events: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: min(100%, 30rem);
+    min-height: 3.5rem;
+    margin-inline: auto;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    background: var(--cor-destaque);
+    color: var(--cor-destaque-texto);
+    font-weight: 600;
+    box-shadow: 0 0.75rem 2rem rgb(30 16 2 / 0.35);
+}
+.barra-pedido:not([data-mostrar]) button {
+    visibility: hidden;
+}
+.whats-flutuante a {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 39;
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--cor-destaque); /* pistache, ícone chocolate-escuro: 9,9:1 */
+    color: #2a1703;
+    box-shadow: 0 0.5rem 1.5rem rgb(30 16 2 / 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+}
+.whats-flutuante [data-mostrar] {
+    opacity: 1;
+    visibility: visible;
+}
+body[data-com-pedido] .whats-flutuante a {
+    display: none;
+}
+
+/* 12. Carrinho */
+.carrinho {
+    width: min(100%, 28rem);
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: 0;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    overflow-y: auto;
+}
+.carrinho[open] {
+    animation: entra-lado 0.25s ease-out;
+}
+.carrinho::backdrop {
+    background: rgb(30 16 2 / 0.55);
+}
+.carrinho__topo {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+}
+.carrinho__topo :focus-visible {
+    outline-color: var(--cor-texto-claro);
+}
+.carrinho__topo h2 {
+    color: inherit;
+    font-size: 1.85rem;
+}
+.carrinho__fechar {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 2rem;
+    line-height: 1;
+}
+.carrinho__vazio {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+.carrinho__vazio img {
+    width: 5rem;
+}
+.carrinho__barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem 0;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+}
+.carrinho__limpar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    color: var(--cor-texto);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.carrinho__limpar:hover {
+    background: var(--cor-fundo-alt);
+}
+.carrinho__limpar[data-confirmar] {
+    background: var(--cor-texto);
+    color: var(--cor-texto-claro);
+}
+.carrinho__horario {
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.carrinho__horario[data-aberta="sim"] {
+    background: #e3f4e9;
+    color: #0b5a2e;
+}
+.carrinho__horario[data-aberta="nao"] {
+    background: var(--cor-fundo-alt);
+    color: var(--cor-texto);
+    font-weight: 600;
+}
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+.carrinho__lista {
+    padding: 0.5rem 1.25rem;
+}
+.linha {
+    display: grid;
+    grid-template-columns: 1fr 8.5rem;
+    gap: 0.75rem;
+    align-items: center;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--cor-linha);
+}
+.linha strong,
+.linha small,
+.linha__preco {
+    display: block;
+}
+.linha strong {
+    font-weight: 500;
+}
+.linha small {
+    color: var(--cor-texto-suave);
+    font-size: 0.82rem;
+}
+.linha__preco {
+    margin-top: 0.15rem;
+    color: var(--cor-marca);
+    font-weight: 600;
+}
+.carrinho__taxa {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.25rem 0;
+    color: var(--cor-texto-suave);
+}
+.carrinho__taxa[hidden] {
+    display: none;
+}
+.carrinho__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+}
+.carrinho__total strong {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.9rem;
+    color: var(--cor-marca);
+}
+.carrinho__form {
+    display: grid;
+    gap: 1rem;
+    padding: 0 1.25rem 1.5rem;
+}
+.escolha {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.escolha legend {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.escolha label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.5rem 0.85rem;
+    border: 1.5px solid var(--cor-linha);
+    border-radius: 0.75rem;
+    background: var(--cor-cartao);
+}
+.escolha label:has(:checked) {
+    border-color: var(--cor-texto);
+}
+.escolha input {
+    width: 1.2rem;
+    min-height: 0;
+    accent-color: var(--chocolate);
+}
+.carrinho__acoes {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+.carrinho__acoes .btn {
+    width: 100%;
+    white-space: normal;
+}
+@keyframes entra-lado {
+    from {
+        transform: translateX(100%);
+    }
+}
+
+/* 12b. Listas de escolha: o navegador que permite (Chrome/Edge) ganha a lista no estilo da marca;
+   os outros ficam com a lista nativa, que já funciona bem no celular. */
+select {
+    cursor: pointer;
+}
+@supports (appearance: base-select) {
+    select,
+    ::picker(select) {
+        appearance: base-select;
+    }
+    select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    select::picker-icon {
+        color: var(--cor-marca);
+        transition: rotate 0.2s ease;
+    }
+    select:open::picker-icon {
+        rotate: 180deg;
+    }
+    select:open {
+        border-color: var(--cor-fundo-escuro);
+    }
+    ::picker(select) {
+        margin-block: 0.35rem;
+        padding: 0.35rem;
+        max-height: 18rem;
+        border: 1.5px solid var(--cor-texto);
+        border-radius: 0.9rem;
+        background: var(--cor-fundo);
+        box-shadow: 0 1rem 2rem rgb(75 42 6 / 0.2);
+    }
+    option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 2.75rem;
+        padding: 0.45rem 0.75rem;
+        border-radius: 0.6rem;
+        color: var(--cor-texto);
+        font-weight: 400;
+        cursor: pointer;
+    }
+    option:hover,
+    option:focus-visible {
+        background: var(--cor-fundo-alt);
+        outline: none;
+    }
+    option:checked {
+        background: var(--rosa);
+        color: var(--chocolate);
+        font-weight: 600;
+    }
+    option::checkmark {
+        order: 1;
+        margin-left: auto;
+        color: var(--cor-marca);
+    }
+    optgroup {
+        font-weight: 600;
+        color: var(--cor-marca);
+        padding: 0.4rem 0.35rem 0.2rem;
+    }
+    optgroup + optgroup {
+        border-top: 1px dashed var(--cor-linha);
+        margin-top: 0.3rem;
+    }
+}
+
+/* 12c. Calendário (js/calendario.js) */
+.calendario {
+    position: relative;
+}
+.calendario__campo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid var(--cor-linha);
+    border-radius: 0.75rem;
+    background: var(--cor-cartao);
+    color: var(--cor-texto-suave);
+    font-weight: 400;
+    text-align: left;
+}
+.calendario[data-preenchido] .calendario__campo {
+    color: var(--cor-texto);
+    font-weight: 600;
+}
+.calendario__campo svg {
+    color: var(--cor-marca);
+}
+.calendario__campo[aria-expanded="true"] {
+    border-color: var(--cor-fundo-escuro);
+}
+.calendario__painel {
+    position: absolute;
+    z-index: 20;
+    inset: calc(100% + 0.35rem) 0 auto;
+    min-width: 17rem;
+    padding: 0.75rem;
+    border: 1.5px solid var(--cor-texto);
+    border-radius: 1rem;
+    background: var(--cor-fundo);
+    box-shadow: 0 1rem 2rem rgb(75 42 6 / 0.2);
+}
+.calendario__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+.calendario__topo button {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--cor-marca);
+}
+.calendario__topo button:hover:not(:disabled) {
+    background: var(--cor-fundo-alt);
+}
+.calendario__topo button:disabled {
+    visibility: hidden;
+}
+.calendario__mes {
+    font-weight: 600;
+    text-transform: lowercase;
+    color: var(--cor-fundo-escuro);
+}
+.calendario__grade {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+}
+.calendario__grade th {
+    padding-bottom: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--cor-texto-suave);
+}
+.calendario__grade abbr {
+    text-decoration: none;
+}
+.calendario__grade td {
+    padding: 1px;
+}
+.calendario__grade button {
+    width: 100%;
+    aspect-ratio: 1;
+    min-height: 2.25rem;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+}
+.calendario__grade button:hover:not(:disabled) {
+    background: var(--cor-fundo-alt);
+}
+.calendario__grade button:disabled {
+    color: #a8957e;
+    font-weight: 400;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+.calendario__grade [aria-selected="true"] button {
+    background: var(--cor-texto);
+    color: var(--cor-texto-claro);
+}
+.calendario__grade button:focus-visible {
+    outline-offset: 0;
+}
+
+/* 12d. Chamada final: foto em arco com o mascote apontando */
+.chamada {
+    padding-block: var(--secao) calc(var(--secao) + 7.5rem);
+    background: var(--cor-fundo-alt);
+}
+.chamada__grade {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    justify-items: center;
+}
+.chamada__arte {
+    position: relative;
+    width: min(100% - 2.5rem, 22rem);
+    margin-left: 2.5rem;
+}
+.chamada__foto {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 50% 50% 1.25rem 1.25rem / 40% 40% 1.25rem 1.25rem;
+    box-shadow:
+        0 0 0 0.5rem var(--cor-cartao),
+        0 1.25rem 2.5rem rgb(75 42 6 / 0.2);
+}
+.chamada__mascote {
+    position: absolute;
+    left: -2.75rem;
+    bottom: -1.5rem;
+    width: 32%;
+    filter: drop-shadow(0 0.5rem 0.8rem rgb(30 16 2 / 0.25));
+    animation: aceno 3.5s ease-in-out infinite;
+    transform-origin: 50% 90%;
+}
+.chamada__texto {
+    text-align: center;
+}
+.chamada__texto .secao__manuscrito {
+    transform-origin: center;
+}
+.chamada__texto > p:not(.secao__manuscrito) {
+    margin: 1rem auto 0;
+    max-width: 28rem;
+    color: var(--cor-texto-suave);
+}
+.chamada__botoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+.btn--contorno-marca {
+    border: 1.5px solid var(--cor-texto);
+    color: var(--cor-texto);
+}
+.btn--contorno-marca:hover {
+    background: rgb(75 42 6 / 0.06);
+}
+@media (max-width: 30rem) {
+    .chamada__botoes .btn {
+        flex: 1 1 100%;
+    }
+}
+@media (min-width: 52rem) {
+    .chamada__grade {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+    .chamada__texto {
+        text-align: left;
+        justify-self: start;
+    }
+    .chamada__texto .secao__manuscrito {
+        transform-origin: left center;
+    }
+    .chamada__texto > p:not(.secao__manuscrito) {
+        margin-left: 0;
+    }
+    .chamada__botoes {
+        justify-content: flex-start;
+    }
+}
+
+/* 13. Aviso rápido e pagamento simulado */
+/* fica embaixo, acima da barra do pedido: não passa por cima dos atalhos */
+.aviso-add {
+    position: fixed;
+    bottom: calc(5rem + env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 60;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    background: var(--cor-texto);
+    color: var(--cor-texto-claro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    max-width: calc(100vw - 2rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s;
+}
+.aviso-add[data-mostrar] {
+    opacity: 1;
+    visibility: visible;
+}
+.checkout-demo {
+    width: min(100% - 2rem, 24rem);
+    padding: 1.5rem;
+    border: 0;
+    border-radius: var(--raio);
+    background: #fff;
+    color: #1f2933;
+    text-align: center;
+}
+.checkout-demo::backdrop {
+    background: rgb(0 0 0 / 0.6);
+}
+.checkout-demo h2 {
+    color: #1f2933;
+    font-family: var(--fonte-texto);
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: none;
+}
+.checkout-demo__selo {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background: #fff3c4;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.checkout-demo__loja {
+    margin-top: 0.4rem;
+    color: #52606d;
+    font-size: 0.95rem;
+}
+.checkout-demo__valor {
+    margin-block: 0.75rem 1rem;
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+.checkout-demo fieldset {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    border: 0;
+    text-align: left;
+}
+.checkout-demo legend {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+.checkout-demo label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0.5rem 0.85rem;
+    border: 2px solid #e4e7eb;
+    border-radius: 0.75rem;
+}
+.checkout-demo label:has(:checked) {
+    border-color: var(--cor-marca);
+}
+.checkout-demo input {
+    width: 1.2rem;
+    min-height: 0;
+    accent-color: var(--cor-marca);
+}
+.checkout-demo .btn {
+    width: 100%;
+}
+.checkout-demo__cancelar {
+    margin-top: 0.75rem;
+    min-height: 2.75rem;
+    color: #52606d;
+    text-decoration: underline;
+}
+.checkout-demo__nota {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #52606d;
+}
+
+/* 14. Página de pedido confirmado */
+.confirmado {
+    min-height: 100svh;
+    padding: clamp(2rem, 6vw, 4rem) var(--gutter);
+    background: var(--cor-fundo-alt);
+}
+.confirmado__cartao {
+    width: min(100%, 32rem);
+    margin-inline: auto;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    border-radius: var(--raio);
+    background: var(--cor-fundo);
+    text-align: center;
+    box-shadow: 0 0 0 6px var(--rosa);
+}
+.confirmado__cartao > img {
+    width: 5.5rem;
+    margin: 0 auto 1rem;
+}
+.confirmado h1 {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    color: var(--cor-marca);
+}
+.confirmado__texto {
+    margin-top: 0.75rem;
+    color: var(--cor-texto-suave);
+}
+.confirmado__resumo {
+    margin-block: 1.5rem;
+    text-align: left;
+}
+.confirmado__resumo h2 {
+    font-family: var(--fonte-texto);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: none;
+    color: var(--cor-texto);
+}
+.confirmado__resumo ul {
+    margin-top: 0.5rem;
+}
+.confirmado__resumo li,
+.confirmado__total {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px dashed var(--cor-linha);
+}
+.confirmado__resumo small {
+    display: block;
+    color: var(--cor-texto-suave);
+    font-size: 0.85rem;
+}
+.confirmado__total {
+    border: 0;
+    font-weight: 600;
+}
+.confirmado__total strong {
+    color: var(--cor-marca);
+    font-size: 1.25rem;
+}
+.confirmado .btn {
+    width: 100%;
+}
+@media (max-width: 25.6rem) {
+    .confirmado .btn,
+    .carrinho__acoes .btn {
+        font-size: 1rem;
+        padding-inline: 1rem;
+    }
+}
+.confirmado__voltar {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--cor-marca);
+    font-weight: 600;
+}
+
+/* 15. Animação ao rolar */
+.js [data-revelar]:not([data-visivel]) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+}
+[data-revelar] {
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+/* Páginas simples (404 e política de privacidade) */
+.pagina {
+    width: min(100% - 2 * var(--gutter), 42rem);
+    margin-inline: auto;
+    padding-block: clamp(3rem, 8vw, 5rem);
+}
+.pagina h1 {
+    font-size: var(--t-h2);
+    margin-block: 1.25rem 1rem;
+    color: var(--cor-marca);
+}
+.pagina h2 {
+    font-size: var(--t-h3);
+    margin-top: 2.25rem;
+}
+.pagina p {
+    margin-top: 0.9rem;
+    color: var(--cor-texto-suave);
+}
+.pagina a {
+    color: var(--cor-marca);
+    text-underline-offset: 0.2em;
+}
+/* links soltos da página: área de toque de pelo menos 24 px (WCAG 2.5.8) */
+.pagina > a,
+.pagina > p > a:only-child {
+    display: inline-block;
+    padding-block: 0.6rem;
+    margin-right: 1.5rem;
+}
+.pagina__logo {
+    width: 12rem;
+}

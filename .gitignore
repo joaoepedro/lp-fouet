@@ -1,0 +1,18 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e ferramentas
+.claude/
+.vscode/
+.wrangler/
+node_modules/
+*.log
+
+# Segredos
+.env
+.env.*
+
+# Originais pesados: ficam só no computador
+/fotos-brutas/

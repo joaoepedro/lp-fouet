@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- ✏️ EDITÁVEL: título da aba (até 60 caracteres) -->
+        <title>Doceria em Ribeirão Preto | Fouet Studio</title>
+        <!-- ✏️ FIM -->
+        <!-- ✏️ EDITÁVEL: descrição no Google (até 155 caracteres) -->
+        <meta
+            name="description"
+            content="Cookies, brownies, cupcakes, fatias e bolos de aniversário em Ribeirão Preto. Peça pelo site, pague com Pix ou cartão e receba em casa."
+        />
+        <!-- ✏️ FIM -->
+
+        <!-- DEMONSTRAÇÃO: apagar a linha abaixo quando o cliente aprovar (ver README, "Publicar de verdade") -->
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://lp-fouet.pages.dev/" />
+        <meta name="theme-color" content="#4b2a06" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Fouet Studio" />
+        <meta
+            property="og:title"
+            content="Fouet Studio · um pequeno luxo para cada dia"
+        />
+        <meta
+            property="og:description"
+            content="Cookies, brownies, cupcakes, fatias e bolos de aniversário em Ribeirão Preto. Peça pelo site, pague com Pix ou cartão e receba em casa."
+        />
+        <meta property="og:url" content="https://lp-fouet.pages.dev/" />
+        <meta
+            property="og:image"
+            content="https://lp-fouet.pages.dev/assets/img/og-capa.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <link
+            rel="icon"
+            href="assets/img/favicon-32.png"
+            sizes="32x32"
+            type="image/png"
+        />
+        <link rel="apple-touch-icon" href="assets/img/favicon-180.png" />
+        <link
+            rel="preload"
+            href="assets/fonts/gloock.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="assets/fonts/poppins-400.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            as="image"
+            href="assets/img/logo-studio-creme-900.webp"
+            imagesrcset="
+                assets/img/logo-studio-creme-600.webp 600w,
+                assets/img/logo-studio-creme-900.webp 900w
+            "
+            imagesizes="min(86vw, 36rem)"
+            fetchpriority="high"
+        />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script>
+            document.documentElement.classList.add("js");
+        </script>
+        <script src="js/config.js" defer></script>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Bakery",
+                "name": "Fouet Studio",
+                "slogan": "Um pequeno luxo para cada dia",
+                "description": "Cookies, brownies, cupcakes, fatias e bolos de aniversário em Ribeirão Preto-SP.",
+                "url": "https://lp-fouet.pages.dev/",
+                "image": "https://lp-fouet.pages.dev/assets/img/og-capa.jpg",
+                "logo": "https://lp-fouet.pages.dev/assets/img/favicon-180.png",
+                "servesCuisine": "Confeitaria",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Ribeirão Preto",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "areaServed": "Ribeirão Preto-SP"
+            }
+        </script>
+
+        <script src="js/utils.js" defer></script>
+        <script src="js/tracking.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/cardapio.js" defer></script>
+        <script src="js/calendario.js" defer></script>
+        <script src="js/carrinho.js" defer></script>
+        <script src="js/aviso-demo.js" defer></script>
+    </head>
+    <body>
+        <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+            <symbol id="i-whats" viewBox="0 0 24 24">
+                <path
+                    fill="currentColor"
+                    d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"
+                />
+            </symbol>
+            <symbol id="i-sacola" viewBox="0 0 24 24">
+                <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 8h14l-1.2 12H6.2L5 8Zm4 0V6.5a3 3 0 0 1 6 0V8"
+                />
+            </symbol>
+            <symbol id="i-insta" viewBox="0 0 24 24">
+                <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5.2-1.6v.1"
+                />
+            </symbol>
+        </svg>
+
+        <header data-topo>
+            <a
+                class="topo__marca"
+                href="#conteudo"
+                aria-label="Fouet Studio, início"
+            >
+                <img
+                    src="assets/img/logo-studio-creme-360.webp"
+                    width="360"
+                    height="202"
+                    alt="Fouet Studio"
+                    decoding="async"
+                />
+            </a>
+            <button
+                type="button"
+                class="topo__menu"
+                aria-expanded="false"
+                aria-controls="menu"
+                data-menu-botao
+            >
+                <span class="visually-hidden">Abrir menu</span>
+                <span class="hamburguer" aria-hidden="true"
+                    ><i></i><i></i><i></i
+                ></span>
+            </button>
+            <nav id="menu" aria-label="Principal" data-menu>
+                <ul role="list">
+                    <li><a href="#cardapio">Cardápio</a></li>
+                    <li><a href="#encomendas">Bolos de aniversário</a></li>
+                    <li><a href="#festas">Festas</a></li>
+                    <li><a href="#como-pedir">Como pedir</a></li>
+                    <li><a href="#duvidas">Dúvidas</a></li>
+                </ul>
+            </nav>
+            <button type="button" class="topo__sacola" data-carrinho-abrir>
+                <svg width="24" height="24" aria-hidden="true">
+                    <use href="#i-sacola" />
+                </svg>
+                <span class="visually-hidden">Ver meu pedido,</span>
+                <span class="topo__qtd" data-carrinho-qtd hidden>0</span>
+                <span class="visually-hidden"> itens</span>
+            </button>
+        </header>
+
+        <main id="conteudo" tabindex="-1">
+            <section
+                class="abertura"
+                aria-labelledby="titulo-principal"
+                data-primeira-tela
+            >
+                <div class="abertura__painel">
+                    <!-- Vídeo de fundo (feito com IA) mudo e em loop. A foto é a capa enquanto carrega e para quem pediu menos movimento. -->
+                    <video
+                        class="abertura__foto"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        poster="assets/img/hero-capa-paisagem.webp"
+                        aria-hidden="true"
+                        data-video-fundo
+                        data-capa-retrato="assets/img/hero-capa-retrato.webp"
+                    >
+                        <!-- celular em pé: o vídeo original, em retrato -->
+                        <source
+                            src="assets/video/hero-retrato.mp4"
+                            type="video/mp4"
+                            media="(max-aspect-ratio: 4/5)"
+                        />
+                        <source
+                            src="assets/video/hero-paisagem.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                    <div class="abertura__veu" aria-hidden="true"></div>
+                    <div class="abertura__miolo">
+                        <div class="abertura__marca">
+                            <h1 id="titulo-principal">
+                                <img
+                                    src="assets/img/logo-studio-creme-900.webp"
+                                    srcset="
+                                        assets/img/logo-studio-creme-600.webp 600w,
+                                        assets/img/logo-studio-creme-900.webp 900w
+                                    "
+                                    sizes="min(86vw, 36rem)"
+                                    width="900"
+                                    height="511"
+                                    alt="Fouet Studio"
+                                    fetchpriority="high"
+                                />
+                            </h1>
+                        </div>
+                        <!-- ✏️ EDITÁVEL: frase da marca e local -->
+                        <p class="abertura__frase">
+                            um pequeno luxo para cada dia
+                        </p>
+                        <p class="abertura__local">ribeirão preto · sp</p>
+                        <!-- ✏️ FIM -->
+                        <div class="abertura__botoes">
+                            <a
+                                class="btn btn--claro"
+                                href="#cardapio"
+                                data-gatilho-flutuante
+                                >Ver o cardápio</a
+                            >
+                            <a
+                                class="btn btn--contorno"
+                                href="https://wa.me/5516999990000"
+                                target="_blank"
+                                rel="noopener"
+                                data-whats
+                                data-local="primeira-tela"
+                                ><svg width="20" height="20" aria-hidden="true">
+                                    <use href="#i-whats" /></svg
+                                >Pedir pelo WhatsApp<span
+                                    class="visually-hidden"
+                                >
+                                    (abre em nova aba)</span
+                                ></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="area-pedido">
+                <nav
+                    class="atalhos"
+                    data-atalhos
+                    aria-label="Atalhos do cardápio"
+                >
+                    <a href="#cat-cookies">Cookies <b>R$ 12</b></a>
+                    <a href="#cat-brownies">Brownies <b>R$ 14</b></a>
+                    <a href="#cat-cupcakes">Cupcakes <b>R$ 13</b></a>
+                    <a href="#cat-fatias">Fatias <b>R$ 22</b></a>
+                    <a href="#cat-cheesecakes">Cheesecakes <b>R$ 22</b></a>
+                    <a href="#caixa">Caixa presente <b>R$ 54,90</b></a>
+                    <a href="#encomendas">Bolos de aniversário</a>
+                    <a href="#tortas">Tortas inteiras</a>
+                    <a href="#festas">Festas</a>
+                </nav>
+                <section
+                    id="cardapio"
+                    class="cardapio"
+                    aria-labelledby="titulo-cardapio"
+                >
+                    <div class="container">
+                        <p class="secao__manuscrito" aria-hidden="true">
+                            feitos hoje
+                        </p>
+                        <h2 id="titulo-cardapio">Escolha seus doces</h2>
+                        <p class="secao__sub">
+                            Pronta entrega, de terça a domingo. Toque em
+                            “Adicionar” e o doce vai para o seu pedido. No fim,
+                            você paga pelo site ou envia tudo pelo WhatsApp.
+                        </p>
+
+                        <div data-cardapio>
+                            <p>
+                                Cardápio: cookies (R$ 12 a 16), brownies (R$ 14 a
+                                18), cupcakes (R$ 13 a 16), fatias e cheesecakes
+                                (R$ 22 a 24).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    id="caixa"
+                    class="caixa"
+                    aria-labelledby="titulo-caixa"
+                >
+                    <div class="container caixa__grade">
+                        <div class="caixa__texto" data-revelar>
+                            <img
+                                class="caixa__mascote"
+                                src="assets/img/mascote-dedo-220.webp"
+                                width="220"
+                                height="417"
+                                alt=""
+                                loading="lazy"
+                            />
+                            <h2 id="titulo-caixa">Caixa presente com&nbsp;4</h2>
+                            <p>
+                                2 cookies, 1 brownie e 1 cupcake, do jeito que
+                                você quiser, numa caixa com laço de fita, por
+                                <strong>R$ 54,90</strong>.
+                            </p>
+                            <p class="caixa__nota">
+                                pra presentear… ou se presentear
+                            </p>
+                        </div>
+                        <div class="combo" data-combo></div>
+                    </div>
+                </section>
+
+                <section
+                    id="encomendas"
+                    class="encomendas"
+                    aria-labelledby="titulo-encomendas"
+                >
+                    <div class="container">
+                        <p class="secao__manuscrito" aria-hidden="true">
+                            sob encomenda
+                        </p>
+                        <h2 id="titulo-encomendas">Bolos de aniversário</h2>
+                        <p class="secao__sub">
+                            Escolha o bolo, o tamanho e o dia. Todos são feitos
+                            sob encomenda, com pelo menos
+                            <strong>2 dias de antecedência</strong>.
+                        </p>
+                        <ul
+                            class="grade-encomendas"
+                            role="list"
+                            data-encomendas="bolos"
+                        ></ul>
+                        <h3 id="tortas" class="encomendas__sub">
+                            Tortas inteiras
+                        </h3>
+                        <p class="secao__sub">
+                            Para levar para o almoço de domingo ou servir de
+                            sobremesa na festa.
+                        </p>
+                        <ul
+                            class="grade-encomendas"
+                            role="list"
+                            data-encomendas="tortas"
+                        ></ul>
+                    </div>
+                </section>
+
+                <section
+                    id="festas"
+                    class="festas"
+                    aria-labelledby="titulo-festas"
+                >
+                    <div class="container">
+                        <p class="secao__manuscrito" aria-hidden="true">
+                            para muita gente
+                        </p>
+                        <h2 id="titulo-festas">Encomendas para festas</h2>
+                        <p class="secao__sub">
+                            Pedidos grandes para aniversário, chá de bebê ou
+                            reunião. Escolha a quantidade e o dia (com pelo menos
+                            2 dias de antecedência).
+                        </p>
+                        <ul
+                            class="grade-encomendas"
+                            role="list"
+                            data-festas
+                        ></ul>
+                        <div class="eventos" id="eventos" data-revelar>
+                            <img
+                                class="eventos__mascote"
+                                src="assets/img/mascote-ok-220.webp"
+                                width="220"
+                                height="406"
+                                alt=""
+                                loading="lazy"
+                            />
+                            <div>
+                                <h3>casamentos, empresas e mesas de doces</h3>
+                                <p>
+                                    Para mais de 100 convidados ou uma mesa
+                                    completa, a gente monta um orçamento junto
+                                    com você: sabores, cores e embalagens com a
+                                    cara da sua festa.
+                                </p>
+                                <a
+                                    class="btn btn--claro"
+                                    href="https://wa.me/5516999990000"
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-whats="Olá! Vim pelo site da Fouet e queria um orçamento para uma festa/evento."
+                                    data-local="eventos"
+                                    ><svg
+                                        width="20"
+                                        height="20"
+                                        aria-hidden="true"
+                                    >
+                                        <use href="#i-whats" /></svg
+                                    >Pedir orçamento<span
+                                        class="visually-hidden"
+                                    >
+                                        (abre em nova aba)</span
+                                    ></a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section id="como-pedir" class="como" aria-labelledby="titulo-como">
+                <div class="container">
+                    <h2 id="titulo-como">Como pedir</h2>
+                    <ol class="passos" role="list">
+                        <li data-revelar>
+                            <span class="passos__n" aria-hidden="true">1</span>
+                            <h3>Monte o pedido</h3>
+                            <p>
+                                Doces da vitrine para hoje, ou bolos, tortas e
+                                festas para o dia que você escolher.
+                            </p>
+                        </li>
+                        <li data-revelar>
+                            <span class="passos__n" aria-hidden="true">2</span>
+                            <h3>Pague como preferir</h3>
+                            <p>
+                                Pix ou cartão aqui mesmo no site, ou combine
+                                tudo pelo WhatsApp.
+                            </p>
+                        </li>
+                        <li data-revelar>
+                            <span class="passos__n" aria-hidden="true">3</span>
+                            <h3>Receba ou retire</h3>
+                            <p>
+                                A gente entrega em Ribeirão Preto ou você busca
+                                no ateliê, no Jardim Botânico.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section
+                id="duvidas"
+                class="duvidas"
+                aria-labelledby="titulo-duvidas"
+            >
+                <div class="container container--estreito">
+                    <h2 id="titulo-duvidas">Dúvidas</h2>
+                    <!-- ✏️ EDITÁVEL: perguntas frequentes (confirmar: ver docs/a-confirmar.md) -->
+                    <details name="faq">
+                        <summary>Vocês entregam em toda Ribeirão Preto?</summary>
+                        <p>
+                            Entregamos em Ribeirão Preto. Ao escolher “Entregar
+                            em casa” no pedido, a taxa de entrega aparece e já
+                            entra no total.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>Posso retirar no ateliê?</summary>
+                        <p>
+                            Pode, sim. É só escolher “Retirar no ateliê” no
+                            pedido: a gente avisa pelo WhatsApp quando estiver
+                            pronto, no Jardim Botânico.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>
+                            Com quanto tempo de antecedência peço um bolo?
+                        </summary>
+                        <p>
+                            Bolos de aniversário, tortas inteiras e encomendas
+                            para festas são feitos sob encomenda: peça com pelo
+                            menos 2 dias de antecedência. O calendário do site
+                            já só mostra os dias disponíveis.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>Qual tamanho de bolo eu escolho?</summary>
+                        <p>
+                            O P tem 1 kg e serve de 8 a 10 pessoas, o M tem 2 kg
+                            e serve de 16 a 20, e o G tem 3 kg e serve de 25 a
+                            30. Para mais gente, chame no WhatsApp que a gente
+                            monta um bolo maior.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>
+                            Qual o pedido mínimo para festas?
+                        </summary>
+                        <p>
+                            Depende do doce: 25 mini cupcakes, 30 mini brownies
+                            ou 12 cupcakes decorados. Para eventos maiores, peça
+                            um orçamento pelo WhatsApp.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>Como funciona o pagamento pelo site?</summary>
+                        <p>
+                            Você paga com Pix ou cartão numa página segura.
+                            Depois, o pedido pago vai pronto para o nosso
+                            WhatsApp, com o comprovante.
+                        </p>
+                    </details>
+                    <details name="faq">
+                        <summary>Tenho alergia. Posso perguntar os ingredientes?</summary>
+                        <p>
+                            Claro. Nossos doces levam leite, ovos, trigo e
+                            castanhas, e são feitos na mesma cozinha. Chame no
+                            WhatsApp antes de pedir que a gente conta tudo.
+                        </p>
+                    </details>
+                    <!-- ✏️ FIM -->
+                </div>
+            </section>
+            <section class="chamada" aria-labelledby="titulo-chamada">
+                <div class="container chamada__grade">
+                    <div class="chamada__arte">
+                        <img
+                            class="chamada__foto"
+                            src="assets/img/chamada.webp"
+                            width="720"
+                            height="900"
+                            alt="Brownies empilhados com doce de leite escorrendo"
+                            loading="lazy"
+                        />
+                        <img
+                            class="chamada__mascote"
+                            src="assets/img/mascote-dedo-220.webp"
+                            width="220"
+                            height="417"
+                            alt=""
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="chamada__texto" data-revelar>
+                        <p class="secao__manuscrito" aria-hidden="true">
+                            vai, você merece
+                        </p>
+                        <h2 id="titulo-chamada">Hoje é dia de um docinho?</h2>
+                        <p>
+                            Então não fica só na vontade: monte seu pedido agora
+                            e escolha se paga pelo site ou combina pelo
+                            WhatsApp.
+                        </p>
+                        <div class="chamada__botoes">
+                            <a class="btn btn--marca" href="#cardapio"
+                                >Montar meu pedido</a
+                            >
+                            <a
+                                class="btn btn--contorno-marca"
+                                href="https://wa.me/5516999990000"
+                                target="_blank"
+                                rel="noopener"
+                                data-whats
+                                data-local="chamada"
+                                ><svg width="20" height="20" aria-hidden="true">
+                                    <use href="#i-whats" /></svg
+                                >Pedir pelo WhatsApp<span
+                                    class="visually-hidden"
+                                >
+                                    (abre em nova aba)</span
+                                ></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="rodape">
+            <img
+                class="rodape__mascote"
+                src="assets/img/mascote-ok-220.webp"
+                width="220"
+                height="406"
+                alt=""
+                loading="lazy"
+            />
+            <div class="listras" aria-hidden="true"></div>
+            <div class="rodape__miolo">
+                <img
+                    class="rodape__logo"
+                    src="assets/img/logo-studio-creme-360.webp"
+                    width="360"
+                    height="202"
+                    alt="Fouet Studio"
+                    loading="lazy"
+                />
+                <p class="rodape__frase">um pequeno luxo para cada dia</p>
+                <address>Jardim Botânico, Ribeirão Preto-SP</address>
+                <ul class="rodape__redes" role="list">
+                    <li>
+                        <a
+                            href="#"
+                            data-instagram
+                            target="_blank"
+                            rel="noopener"
+                            ><svg width="24" height="24" aria-hidden="true">
+                                <use href="#i-insta" /></svg
+                            ><span class="visually-hidden"
+                                >Instagram (abre em nova aba)</span
+                            ></a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://wa.me/5516999990000"
+                            target="_blank"
+                            rel="noopener"
+                            data-whats
+                            data-local="rodape-icone"
+                            ><svg width="24" height="24" aria-hidden="true">
+                                <use href="#i-whats" /></svg
+                            ><span class="visually-hidden"
+                                >WhatsApp (abre em nova aba)</span
+                            ></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" data-ifood target="_blank" rel="noopener"
+                            ><img
+                                class="icone-ifood"
+                                src="assets/img/icone-ifood.png"
+                                width="24"
+                                height="21"
+                                alt=""
+                            /><span class="visually-hidden"
+                                >iFood (abre em nova aba)</span
+                            ></a
+                        >
+                    </li>
+                </ul>
+                <p class="rodape__direitos">
+                    © <span data-ano>2026</span> Fouet Studio ·
+                    <a href="politica-de-privacidade.html"
+                        >Política de privacidade</a
+                    >
+                </p>
+            </div>
+        </footer>
+
+        <aside class="barra-pedido" aria-label="Seu pedido" data-barra-pedido>
+            <button type="button" data-carrinho-abrir>
+                <span>Ver pedido (<span data-carrinho-qtd>0</span>)</span>
+                <strong data-carrinho-total-barra>R$ 0,00</strong>
+            </button>
+        </aside>
+
+        <aside class="whats-flutuante" aria-label="Atalho para o WhatsApp">
+            <a
+                href="https://wa.me/5516999990000"
+                target="_blank"
+                rel="noopener"
+                data-whats
+                data-local="flutuante"
+                data-whats-flutuante
+                aria-label="Pedir pelo WhatsApp (abre em nova aba)"
+            >
+                <svg width="28" height="28" aria-hidden="true">
+                    <use href="#i-whats" />
+                </svg>
+            </a>
+        </aside>
+
+        <dialog
+            class="carrinho"
+            aria-labelledby="titulo-carrinho"
+            data-carrinho
+        >
+            <div class="carrinho__topo">
+                <h2 id="titulo-carrinho">Seu pedido</h2>
+                <button
+                    type="button"
+                    class="carrinho__fechar"
+                    data-carrinho-fechar
+                >
+                    <span aria-hidden="true">×</span
+                    ><span class="visually-hidden">Fechar</span>
+                </button>
+            </div>
+            <div class="carrinho__vazio" data-carrinho-vazio>
+                <img
+                    src="assets/img/mascote-dedo-220.webp"
+                    width="220"
+                    height="417"
+                    alt=""
+                />
+                <p>
+                    Seu pedido está vazio.<br />Que tal começar pela Fatia Fouet?
+                </p>
+                <a
+                    class="btn btn--marca"
+                    href="#cardapio"
+                    data-carrinho-fechar-link
+                    >Ver o cardápio</a
+                >
+            </div>
+            <div data-carrinho-fim hidden>
+                <div class="carrinho__barra">
+                    <span data-carrinho-contagem>0 itens</span>
+                    <button type="button" class="carrinho__limpar" data-limpar>
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"
+                            />
+                        </svg>
+                        <span data-limpar-texto>Limpar carrinho</span>
+                    </button>
+                </div>
+                <ul
+                    class="carrinho__lista"
+                    role="list"
+                    data-carrinho-lista
+                ></ul>
+                <p class="carrinho__taxa" data-carrinho-taxa hidden>
+                    Entrega <strong>R$ 0,00</strong>
+                </p>
+                <p class="carrinho__total">
+                    Total <strong data-carrinho-total>R$ 0,00</strong>
+                </p>
+                <form class="carrinho__form">
+                    <label class="campo">
+                        <span>Seu nome</span>
+                        <input
+                            type="text"
+                            name="nome"
+                            autocomplete="given-name"
+                            required
+                        />
+                    </label>
+                    <fieldset class="escolha">
+                        <legend>Como você quer receber?</legend>
+                        <label
+                            ><input
+                                type="radio"
+                                name="entrega"
+                                value="retirada"
+                                checked
+                            />
+                            Retirar no ateliê</label
+                        >
+                        <label
+                            ><input
+                                type="radio"
+                                name="entrega"
+                                value="entrega"
+                            />
+                            Entregar em casa</label
+                        >
+                    </fieldset>
+                    <label class="campo" data-endereco hidden>
+                        <span>Endereço com bairro</span>
+                        <textarea
+                            name="endereco"
+                            rows="2"
+                            autocomplete="street-address"
+                        ></textarea>
+                        <small data-taxa-aviso
+                            >A taxa de entrega é combinada pelo WhatsApp.</small
+                        >
+                    </label>
+                    <label class="campo">
+                        <span>Observação <small>(opcional)</small></span>
+                        <input
+                            type="text"
+                            name="obs"
+                            placeholder="Ex.: é presente, pode pôr um cartão"
+                        />
+                    </label>
+                    <div class="carrinho__acoes">
+                        <p
+                            class="carrinho__horario"
+                            data-horario-aviso
+                            hidden
+                        ></p>
+                        <button type="submit" class="btn btn--marca" data-pagar>
+                            Pagar agora (Pix ou cartão)
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn--whats"
+                            data-enviar-whats
+                        >
+                            <svg width="20" height="20" aria-hidden="true">
+                                <use href="#i-whats" /></svg
+                            >Enviar pedido pelo WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
+    </body>
+</html>
