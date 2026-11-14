@@ -16,7 +16,8 @@ window.CONFIG = Object.freeze({
     contato: Object.freeze({
         // Só números, com 55 + DDD. NÚMERO DE EXEMPLO (marca fictícia): trocar pelo real.
         whatsapp: "5516999990000",
-        whatsappMensagem: "Olá! Vim pelo site da Fouet e queria fazer um pedido 🍰",
+        whatsappMensagem:
+            "Olá! Vim pelo site da Fouet e queria fazer um pedido 🍰",
         instagram: "https://www.instagram.com/fouetstudio/",
         // LINK DE EXEMPLO (marca fictícia): no modo demonstração abre uma prévia da loja no iFood.
         // Vazio = o botão some da página.
@@ -32,6 +33,8 @@ window.CONFIG = Object.freeze({
         // Taxa fixa de entrega, em centavos (1000 = R$ 10,00). null = combinada pelo WhatsApp.
         // VALOR DE EXEMPLO: confirmar (docs/a-confirmar.md).
         taxaEntrega: 1000,
+        // Cidades atendidas na entrega (o CEP precisa cair numa delas). [] = sem limite.
+        areaEntrega: ["Ribeirão Preto"],
         // Antecedência mínima para bolos, tortas inteiras e festas, em dias
         antecedenciaEncomenda: 2,
         // Onde o cliente retira (aparece no carrinho e na mensagem)

@@ -1,4 +1,4 @@
-Gloock, Mrs Saint Delafield e Poppins: SIL Open Font License 1.1 (uso comercial e na web liberado).
+Gloock e Poppins: SIL Open Font License 1.1 (uso comercial e na web liberado).
 
 ===== Gloock =====
 Copyright 2022 The Gloock Project Authors (https://github.com/duartp/gloock)
@@ -95,7 +95,7 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
-===== Mrs Saint Delafield =====
+=====
 Copyright (c) 2004 Alejandro Paul (sudtipos@sudtipos.com), with Reserved Font Name "Mrs Saint Delafield"
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.

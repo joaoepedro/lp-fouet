@@ -72,11 +72,11 @@
         />
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/variables.css" />
-        <link rel="stylesheet" href="css/style.css?v=2" />
+        <link rel="stylesheet" href="css/style.css?v=3" />
         <script>
             document.documentElement.classList.add("js");
         </script>
-        <script src="js/config.js" defer></script>
+        <script src="js/config.js?v=3" defer></script>
 
         <script type="application/ld+json">
             {
@@ -99,13 +99,13 @@
             }
         </script>
 
-        <script src="js/utils.js" defer></script>
-        <script src="js/tracking.js" defer></script>
-        <script src="js/main.js" defer></script>
-        <script src="js/cardapio.js" defer></script>
-        <script src="js/calendario.js" defer></script>
-        <script src="js/carrinho.js" defer></script>
-        <script src="js/aviso-demo.js" defer></script>
+        <script src="js/utils.js?v=3" defer></script>
+        <script src="js/tracking.js?v=3" defer></script>
+        <script src="js/main.js?v=3" defer></script>
+        <script src="js/cardapio.js?v=3" defer></script>
+        <script src="js/calendario.js?v=3" defer></script>
+        <script src="js/carrinho.js?v=3" defer></script>
+        <script src="js/aviso-demo.js?v=3" defer></script>
     </head>
     <body>
         <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -286,7 +286,7 @@
                     aria-labelledby="titulo-cardapio"
                 >
                     <div class="container">
-                        <p class="secao__manuscrito" aria-hidden="true">
+                        <p class="secao__etiqueta" aria-hidden="true">
                             feitos hoje
                         </p>
                         <h2 id="titulo-cardapio">Escolha seus doces</h2>
@@ -298,9 +298,9 @@
 
                         <div data-cardapio>
                             <p>
-                                Cardápio: cookies (R$ 12 a 16), brownies (R$ 14 a
-                                18), cupcakes (R$ 13 a 16), fatias e cheesecakes
-                                (R$ 22 a 24).
+                                Cardápio: cookies (R$ 12 a 16), brownies (R$ 14
+                                a 18), cupcakes (R$ 13 a 16), fatias e
+                                cheesecakes (R$ 22 a 24).
                             </p>
                         </div>
                     </div>
@@ -341,7 +341,7 @@
                     aria-labelledby="titulo-encomendas"
                 >
                     <div class="container">
-                        <p class="secao__manuscrito" aria-hidden="true">
+                        <p class="secao__etiqueta" aria-hidden="true">
                             sob encomenda
                         </p>
                         <h2 id="titulo-encomendas">Bolos de aniversário</h2>
@@ -376,14 +376,14 @@
                     aria-labelledby="titulo-festas"
                 >
                     <div class="container">
-                        <p class="secao__manuscrito" aria-hidden="true">
+                        <p class="secao__etiqueta" aria-hidden="true">
                             para muita gente
                         </p>
                         <h2 id="titulo-festas">Encomendas para festas</h2>
                         <p class="secao__sub">
                             Pedidos grandes para aniversário, chá de bebê ou
-                            reunião. Escolha a quantidade e o dia (com pelo menos
-                            2 dias de antecedência).
+                            reunião. Escolha a quantidade e o dia (com pelo
+                            menos 2 dias de antecedência).
                         </p>
                         <ul
                             class="grade-encomendas"
@@ -473,11 +473,14 @@
                     <h2 id="titulo-duvidas">Dúvidas</h2>
                     <!-- ✏️ EDITÁVEL: perguntas frequentes (confirmar: ver docs/a-confirmar.md) -->
                     <details name="faq">
-                        <summary>Vocês entregam em toda Ribeirão Preto?</summary>
+                        <summary>
+                            Vocês entregam em toda Ribeirão Preto?
+                        </summary>
                         <p>
                             Entregamos em Ribeirão Preto. Ao escolher “Entregar
-                            em casa” no pedido, a taxa de entrega aparece e já
-                            entra no total.
+                            em casa” no pedido, é só digitar o CEP: o endereço
+                            se preenche sozinho e a taxa de entrega já entra no
+                            total.
                         </p>
                     </details>
                     <details name="faq">
@@ -509,9 +512,7 @@
                         </p>
                     </details>
                     <details name="faq">
-                        <summary>
-                            Qual o pedido mínimo para festas?
-                        </summary>
+                        <summary>Qual o pedido mínimo para festas?</summary>
                         <p>
                             Depende do doce: 25 mini cupcakes, 30 mini brownies
                             ou 12 cupcakes decorados. Para eventos maiores, peça
@@ -527,7 +528,9 @@
                         </p>
                     </details>
                     <details name="faq">
-                        <summary>Tenho alergia. Posso perguntar os ingredientes?</summary>
+                        <summary>
+                            Tenho alergia. Posso perguntar os ingredientes?
+                        </summary>
                         <p>
                             Claro. Nossos doces levam leite, ovos, trigo e
                             castanhas, e são feitos na mesma cozinha. Chame no
@@ -558,7 +561,7 @@
                         />
                     </div>
                     <div class="chamada__texto" data-revelar>
-                        <p class="secao__manuscrito" aria-hidden="true">
+                        <p class="secao__etiqueta" aria-hidden="true">
                             vai, você merece
                         </p>
                         <h2 id="titulo-chamada">Hoje é dia de um docinho?</h2>
@@ -711,7 +714,8 @@
                     alt=""
                 />
                 <p>
-                    Seu pedido está vazio.<br />Que tal começar pela Fatia Fouet?
+                    Seu pedido está vazio.<br />Que tal começar pela Fatia
+                    Fouet?
                 </p>
                 <a
                     class="btn btn--marca"
@@ -783,17 +787,44 @@
                             Entregar em casa</label
                         >
                     </fieldset>
-                    <label class="campo" data-endereco hidden>
-                        <span>Endereço com bairro</span>
-                        <textarea
-                            name="endereco"
-                            rows="2"
-                            autocomplete="street-address"
-                        ></textarea>
+                    <div class="entrega-resumo" data-endereco hidden>
+                        <input type="hidden" name="endereco" />
+                        <button
+                            type="button"
+                            class="entrega-botao"
+                            data-endereco-abrir
+                        >
+                            <span class="entrega-botao__corpo">
+                                <span data-endereco-titulo
+                                    >Dados para entrega</span
+                                >
+                                <span
+                                    class="entrega-botao__texto"
+                                    data-endereco-texto
+                                    hidden
+                                ></span>
+                            </span>
+                            <svg
+                                class="entrega-botao__seta"
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M9 5l7 7-7 7"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
                         <small data-taxa-aviso
                             >A taxa de entrega é combinada pelo WhatsApp.</small
                         >
-                    </label>
+                    </div>
                     <label class="campo">
                         <span>Observação <small>(opcional)</small></span>
                         <input
@@ -823,6 +854,167 @@
                     </div>
                 </form>
             </div>
+        </dialog>
+
+        <!-- Dados para entrega: abre por cima do carrinho; o CEP preenche o resto (ViaCEP) -->
+        <dialog
+            class="carrinho entrega"
+            aria-labelledby="titulo-entrega"
+            data-entrega
+        >
+            <div class="carrinho__topo">
+                <button
+                    type="button"
+                    class="carrinho__fechar"
+                    data-entrega-voltar
+                    aria-label="Voltar para o pedido"
+                >
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M15 5l-7 7 7 7"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+                <h2 id="titulo-entrega">Dados para entrega</h2>
+            </div>
+            <form class="carrinho__form entrega__form" data-entrega-form>
+                <p class="entrega__intro">
+                    Digite o CEP que a gente preenche o resto.
+                </p>
+                <div class="entrega__cep">
+                    <label class="campo">
+                        <span>CEP</span>
+                        <input
+                            type="text"
+                            name="cep"
+                            inputmode="numeric"
+                            autocomplete="postal-code"
+                            maxlength="9"
+                            pattern="[0-9]{5}-?[0-9]{3}"
+                            placeholder="00000-000"
+                            aria-describedby="entrega-status"
+                            required
+                        />
+                    </label>
+                    <a
+                        href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+                        target="_blank"
+                        rel="noopener"
+                        >Não sei meu CEP</a
+                    >
+                </div>
+                <p
+                    id="entrega-status"
+                    class="entrega__status"
+                    role="status"
+                    data-entrega-status
+                ></p>
+                <label class="campo">
+                    <span>Logradouro</span>
+                    <input
+                        type="text"
+                        name="logradouro"
+                        autocomplete="address-line1"
+                        placeholder="Rua, avenida…"
+                        required
+                    />
+                </label>
+                <div class="entrega__dupla">
+                    <label class="campo">
+                        <span>Número</span>
+                        <input
+                            type="text"
+                            name="numero"
+                            autocomplete="off"
+                            required
+                        />
+                    </label>
+                    <label class="campo">
+                        <span>Complemento <small>(opcional)</small></span>
+                        <input
+                            type="text"
+                            name="complemento"
+                            autocomplete="address-line2"
+                            placeholder="Apto, bloco…"
+                        />
+                    </label>
+                </div>
+                <label class="campo">
+                    <span>Bairro</span>
+                    <input
+                        type="text"
+                        name="bairro"
+                        autocomplete="address-level3"
+                        required
+                    />
+                </label>
+                <div class="entrega__dupla entrega__dupla--cidade">
+                    <label class="campo">
+                        <span>Cidade</span>
+                        <input
+                            type="text"
+                            name="cidade"
+                            autocomplete="address-level2"
+                            required
+                        />
+                    </label>
+                    <label class="campo">
+                        <span>Estado</span>
+                        <select
+                            name="estado"
+                            autocomplete="address-level1"
+                            required
+                        >
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MT</option>
+                            <option>MS</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option selected>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
+                        </select>
+                    </label>
+                </div>
+                <p
+                    class="entrega__erro"
+                    role="alert"
+                    data-entrega-erro
+                    hidden
+                ></p>
+                <button type="submit" class="btn btn--marca">
+                    Salvar endereço
+                </button>
+            </form>
         </dialog>
     </body>
 </html>

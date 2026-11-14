@@ -34,6 +34,9 @@
 }
 
 .demo-whats__topo {
+    position: relative;
+    z-index: 1;
+    flex: none;
     display: flex;
     align-items: center;
     gap: 0.65rem;
@@ -68,15 +71,22 @@
     font-size: 0.8rem;
 }
 
+/* a conversa ocupa o espaço que sobra e rola por dentro;
+   a mensagem fica encostada embaixo, como no app (margin-top: auto) */
 .demo-whats__conversa {
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    min-height: 13rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 1rem;
 }
+.demo-whats__conversa > :first-child {
+    margin-top: auto;
+}
 .demo-whats__balao {
+    flex: none;
     align-self: flex-end;
     max-width: 85%;
     padding: 0.5rem 0.65rem 0.35rem;
@@ -179,6 +189,7 @@
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 .demo-insta[open] {
+    height: min(100% - 2rem, 44rem);
     display: flex;
     flex-direction: column;
     animation: dw-entra 0.25s ease-out;
@@ -203,8 +214,10 @@
     padding: 0 0.25rem;
 }
 .demo-insta__rolagem {
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
 }
 .demo-insta__perfil {
     display: flex;
@@ -318,6 +331,7 @@
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 .demo-ifood[open] {
+    height: min(100% - 2rem, 46rem);
     display: flex;
     flex-direction: column;
     animation: dw-entra 0.25s ease-out;
@@ -345,8 +359,10 @@
     color: #fff;
 }
 .demo-ifood__rolagem {
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
 }
 .demo-ifood__capa {
     height: 7rem;

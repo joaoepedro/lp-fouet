@@ -17,7 +17,7 @@
     // Carrega o estilo da prévia só no modo demonstração
     const estilo = document.createElement("link");
     estilo.rel = "stylesheet";
-    estilo.href = new URL("css/demo.css", raiz).href;
+    estilo.href = new URL("css/demo.css?v=3", raiz).href;
     document.head.appendChild(estilo);
 
     const nome = C.empresa.nome;
@@ -67,6 +67,7 @@
 
     const balao = tela.querySelector(".demo-whats__balao");
     const digitando = tela.querySelector(".demo-whats__digitando");
+    const conversa = tela.querySelector(".demo-whats__conversa");
     let origem = null;
     let espera = null;
 
@@ -90,6 +91,8 @@
             () => {
                 digitando.hidden = true;
                 balao.hidden = false;
+                // mensagem longa: começa mostrando o fim, como no app
+                conversa.scrollTop = conversa.scrollHeight;
             },
             pressa ? 0 : 900,
         );
@@ -168,7 +171,9 @@
     insta.querySelector(".demo-insta__aviso strong").textContent = nome;
     let origemInsta = null;
     const fecharInsta = () => insta.close();
-    insta.querySelector(".demo-insta__ok").addEventListener("click", fecharInsta);
+    insta
+        .querySelector(".demo-insta__ok")
+        .addEventListener("click", fecharInsta);
     insta
         .querySelector(".demo-insta__voltar")
         .addEventListener("click", fecharInsta);
@@ -179,7 +184,9 @@
         if (origemInsta && origemInsta.focus) origemInsta.focus();
     });
     document.addEventListener("click", (e) => {
-        const link = e.target.closest('a[href*="instagram.com"], a[data-instagram]');
+        const link = e.target.closest(
+            'a[href*="instagram.com"], a[data-instagram]',
+        );
         if (!link) return;
         e.preventDefault();
         origemInsta = document.activeElement;
@@ -193,9 +200,16 @@
        próprio cardápio (js/cardapio.js). Depois de publicado, abrem a loja real. */
     const M = window.CARDAPIO;
     const real = (c) =>
-        (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        (c / 100).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        });
     const esc = (t) =>
-        String(t).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
+        String(t).replace(
+            /[&<>"]/g,
+            (ch) =>
+                ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch],
+        );
     const foto = (f) => new URL("assets/img/" + f + ".webp", raiz).href;
     const secoes = M
         ? M.categorias
@@ -203,7 +217,7 @@
                   (cat) =>
                       '<section class="demo-ifood__secao"><h3>' +
                       esc(cat.nome) +
-                      "</h3><ul role=\"list\">" +
+                      '</h3><ul role="list">' +
                       cat.itens
                           .map(
                               (p) =>
@@ -240,7 +254,11 @@
         '<ul class="demo-ifood__info" role="list">' +
         "<li><b>35–45 min</b>entrega</li><li><b>R$ 7,99</b>taxa</li><li><b>R$ 20,00</b>pedido mínimo</li></ul>" +
         '<nav class="demo-ifood__abas" aria-hidden="true">' +
-        (M ? M.categorias.map((c) => "<span>" + esc(c.nome) + "</span>").join("") : "") +
+        (M
+            ? M.categorias
+                  .map((c) => "<span>" + esc(c.nome) + "</span>")
+                  .join("")
+            : "") +
         "</nav>" +
         secoes +
         "</div>" +
@@ -252,8 +270,12 @@
     ifood.querySelector(".demo-ifood__aviso strong").textContent = nome;
     let origemIfood = null;
     const fecharIfood = () => ifood.close();
-    ifood.querySelector(".demo-ifood__ok").addEventListener("click", fecharIfood);
-    ifood.querySelector(".demo-ifood__voltar").addEventListener("click", fecharIfood);
+    ifood
+        .querySelector(".demo-ifood__ok")
+        .addEventListener("click", fecharIfood);
+    ifood
+        .querySelector(".demo-ifood__voltar")
+        .addEventListener("click", fecharIfood);
     ifood.addEventListener("click", (e) => {
         if (e.target === ifood) fecharIfood();
     });

@@ -7,22 +7,16 @@
    Teste completo em docs/contraste.md.
    ========================================================= */
 
-/* Títulos: Gloock (substituta livre da Rigot, licença OFL).
-   Frases manuscritas: Mrs Saint Delafield (substituta livre da Moontime, OFL).
+/* Duas fontes só:
+   Títulos e frases de destaque: Gloock (substituta livre da Rigot, licença OFL).
    Texto: Poppins (OFL). O nome da marca é sempre a imagem do logo.
-   Para usar as fontes originais: troque os arquivos em assets/fonts
-   e os nomes em --fonte-titulo e --fonte-manuscrita (ver README). */
+   Para usar a Rigot original: troque o arquivo em assets/fonts
+   e o nome em --fonte-titulo (ver README). */
 @font-face {
     font-family: "Gloock";
     font-weight: 400;
     font-display: swap;
     src: url(../assets/fonts/gloock.woff2) format("woff2");
-}
-@font-face {
-    font-family: "Mrs Saint Delafield";
-    font-weight: 400;
-    font-display: swap;
-    src: url(../assets/fonts/mrs-saint-delafield.woff2) format("woff2");
 }
 @font-face {
     font-family: "Poppins";
@@ -62,7 +56,7 @@
     --cor-cartao: #ffffff;
 
     --cor-marca: var(--chocolate); /* títulos e preços: 11,9:1 */
-    --cor-acento: var(--framboesa-texto); /* frases manuscritas: 5,5:1 */
+    --cor-acento: var(--framboesa-texto); /* frases de destaque: 5,5:1 no creme, 5,1:1 no rosa claro */
     --cor-destaque: var(--pistache); /* botão principal: texto chocolate 7,4:1 */
     --cor-destaque-texto: var(--chocolate);
     --cor-destaque-hover: #cfd77a; /* texto chocolate 8,4:1 */
@@ -71,11 +65,10 @@
     --cor-claro-hover: #cfd77a;
     --cor-moldura: var(--pistache); /* listras do rodapé */
     --cor-selo: var(--rosa); /* etiquetas de preço: chocolate 8,4:1 */
-    --cor-frase-escuro: var(--pistache); /* manuscrito sobre chocolate: 7,4:1 */
+    --cor-frase-escuro: var(--pistache); /* frase de destaque sobre chocolate: 7,4:1 */
 
     /* Tipografia */
     --fonte-titulo: "Gloock", "Rigot", "Didot", Georgia, serif;
-    --fonte-manuscrita: "Mrs Saint Delafield", "Moontime", cursive;
     --fonte-texto: "Poppins", system-ui, sans-serif;
     --t-h2: clamp(2.1rem, 5.5vw, 3.4rem);
     --t-h3: clamp(1.25rem, 3vw, 1.5rem);

@@ -89,17 +89,23 @@
         blocos.forEach((b) => (b.dataset.visivel = ""));
     }
 
-    /* 4. WhatsApp flutuante: aparece quando o gatilho (botão da primeira tela) sai da vista */
+    /* 4. WhatsApp flutuante e barra "Ver pedido": aparecem quando o gatilho
+          (botão da primeira tela) sai da vista, para não cobrir a primeira tela */
     const flutuante = document.querySelector("[data-whats-flutuante]");
     const gatilho = document.querySelector("[data-gatilho-flutuante]");
-    if (flutuante && gatilho && "IntersectionObserver" in window) {
-        new IntersectionObserver(([en]) => {
-            if (!en.isIntersecting && en.boundingClientRect.top < 0)
-                flutuante.dataset.mostrar = "";
-            else delete flutuante.dataset.mostrar;
-        }).observe(gatilho);
-    } else if (flutuante) {
-        flutuante.dataset.mostrar = "";
+    const passou = (sim) => {
+        if (sim) document.body.dataset.passouAbertura = "";
+        else delete document.body.dataset.passouAbertura;
+        if (!flutuante) return;
+        if (sim) flutuante.dataset.mostrar = "";
+        else delete flutuante.dataset.mostrar;
+    };
+    if (gatilho && "IntersectionObserver" in window) {
+        new IntersectionObserver(([en]) =>
+            passou(!en.isIntersecting && en.boundingClientRect.top < 0),
+        ).observe(gatilho);
+    } else {
+        passou(true);
     }
 
     /* 5. Topo transparente que ganha cor depois de rolar um pouco */

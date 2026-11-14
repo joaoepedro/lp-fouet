@@ -48,9 +48,9 @@ window.Pedido = (function () {
     M.categorias.forEach((cat) =>
         cat.itens.forEach((p) => {
             const chave = cat.id + "-" + p.id;
-            const comeca = p.nome.toLowerCase().startsWith(
-                cat.singular.toLowerCase(),
-            );
+            const comeca = p.nome
+                .toLowerCase()
+                .startsWith(cat.singular.toLowerCase());
             produtos[chave] = {
                 ...p,
                 chave,
@@ -312,7 +312,9 @@ window.Pedido = (function () {
                             p.id +
                             '">' +
                             p.nome +
-                            (p.especial ? " (+ " + real(cb.acrescimo) + ")" : "") +
+                            (p.especial
+                                ? " (+ " + real(cb.acrescimo) + ")"
+                                : "") +
                             "</option>",
                     )
                     .join("");
@@ -570,7 +572,8 @@ window.Pedido = (function () {
             if (!pedirDia(data)) return;
             adicionar({
                 chave: f.id + ":" + q + ":" + data.value,
-                nome: q + " " + f.nome.charAt(0).toLowerCase() + f.nome.slice(1),
+                nome:
+                    q + " " + f.nome.charAt(0).toLowerCase() + f.nome.slice(1),
                 detalhe:
                     "Festa · para " +
                     diaBonito(data.value) +
@@ -613,6 +616,164 @@ window.Pedido = (function () {
             Math.random().toString(36).slice(2, 6).toUpperCase()
         );
     }
+    /* ---------- Dados para entrega (CEP → endereço pela ViaCEP) ---------- */
+    const semAcento = (t) =>
+        String(t || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim()
+            .toLowerCase();
+    function atendeCidade(cidade) {
+        const area = C.pedidos.areaEntrega || [];
+        return (
+            !area.length || area.some((c) => semAcento(c) === semAcento(cidade))
+        );
+    }
+    function textoEndereco(d) {
+        return (
+            d.logradouro +
+            ", " +
+            d.numero +
+            (d.complemento ? ", " + d.complemento : "") +
+            " – " +
+            d.bairro +
+            ", " +
+            d.cidade +
+            "-" +
+            d.estado +
+            ", CEP " +
+            d.cep
+        );
+    }
+    function montarEntrega(tela, aoSalvar) {
+        const form = tela.querySelector("[data-entrega-form]");
+        const campo = form.elements;
+        const status = tela.querySelector("[data-entrega-status]");
+        const erro = tela.querySelector("[data-entrega-erro]");
+        const nomes = [
+            "cep",
+            "logradouro",
+            "numero",
+            "complemento",
+            "bairro",
+            "cidade",
+            "estado",
+        ];
+        let buscando = null;
+        let ultimoCep = "";
+
+        const dizer = (texto, tipo) => {
+            status.textContent = texto;
+            if (tipo) status.dataset.tipo = tipo;
+            else delete status.dataset.tipo;
+        };
+        const foraDaArea = () =>
+            "Por enquanto entregamos só em " +
+            C.pedidos.areaEntrega.join(", ") +
+            ". Se preferir, volte e escolha retirar no ateliê.";
+
+        async function buscarCep(numeros) {
+            if (buscando) buscando.abort();
+            const controle = new AbortController();
+            buscando = controle;
+            ultimoCep = numeros;
+            const prazo = setTimeout(() => controle.abort(), 6000);
+            dizer("Buscando o endereço…");
+            form.setAttribute("aria-busy", "true");
+            try {
+                const r = await fetch(
+                    "https://viacep.com.br/ws/" + numeros + "/json/",
+                    { signal: controle.signal },
+                );
+                if (!r.ok) throw new Error("ViaCEP " + r.status);
+                const d = await r.json();
+                if (buscando !== controle) return;
+                if (d.erro) {
+                    ultimoCep = "";
+                    return dizer(
+                        "Não achamos esse CEP. Confira os números ou preencha o endereço abaixo.",
+                        "erro",
+                    );
+                }
+                campo.logradouro.value = d.logradouro || "";
+                campo.bairro.value = d.bairro || "";
+                campo.cidade.value = d.localidade || "";
+                if (d.uf) campo.estado.value = d.uf;
+                if (!atendeCidade(d.localidade))
+                    return dizer(foraDaArea(), "erro");
+                if (d.logradouro) {
+                    dizer("Endereço encontrado. Agora é só o número.");
+                    campo.numero.focus();
+                } else {
+                    dizer("CEP encontrado. Complete o logradouro e o bairro.");
+                    campo.logradouro.focus();
+                }
+            } catch {
+                if (buscando !== controle) return; // trocou de CEP no meio
+                ultimoCep = "";
+                dizer(
+                    "Não deu para buscar o CEP agora. Preencha o endereço abaixo.",
+                    "erro",
+                );
+            } finally {
+                clearTimeout(prazo);
+                if (buscando === controle) {
+                    buscando = null;
+                    form.removeAttribute("aria-busy");
+                }
+            }
+        }
+
+        // máscara 00000-000; com 8 números, busca sozinho
+        campo.cep.addEventListener("input", () => {
+            const n = campo.cep.value.replace(/\D/g, "").slice(0, 8);
+            campo.cep.value =
+                n.length > 5 ? n.slice(0, 5) + "-" + n.slice(5) : n;
+            if (n.length === 8 && n !== ultimoCep) buscarCep(n);
+            if (n.length < 8) {
+                ultimoCep = "";
+                dizer("");
+            }
+        });
+        form.addEventListener("input", () => (erro.hidden = true));
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            const d = {};
+            nomes.forEach((n) => (d[n] = campo[n].value.trim()));
+            if (!atendeCidade(d.cidade)) {
+                erro.textContent = foraDaArea();
+                erro.hidden = false;
+                campo.cidade.focus();
+                return;
+            }
+            U.sessao.gravar("entrega", d);
+            aoSalvar(d);
+            tela.close();
+        });
+        tela.querySelector("[data-entrega-voltar]").addEventListener(
+            "click",
+            () => tela.close(),
+        );
+        tela.addEventListener("click", (e) => {
+            if (e.target === tela) tela.close();
+        });
+
+        return {
+            abrir(aviso) {
+                const salvo = U.sessao.ler("entrega");
+                if (salvo)
+                    nomes.forEach((n) => (campo[n].value = salvo[n] || ""));
+                ultimoCep = campo.cep.value.replace(/\D/g, "");
+                erro.hidden = true;
+                dizer(aviso || "", aviso ? "erro" : "");
+                tela.showModal();
+                campo.cep.focus();
+            },
+        };
+    }
+
     function montarCarrinho(dlg) {
         const lista = dlg.querySelector("[data-carrinho-lista]");
         const vazio = dlg.querySelector("[data-carrinho-vazio]");
@@ -625,6 +786,26 @@ window.Pedido = (function () {
         // a página nunca recarrega: quem decide o que fazer é o clique em data-pagar
         form.addEventListener("submit", (e) => e.preventDefault());
         const endereco = dlg.querySelector("[data-endereco]");
+        const abrirEndereco = dlg.querySelector("[data-endereco-abrir]");
+        const enderecoTitulo = dlg.querySelector("[data-endereco-titulo]");
+        const enderecoTexto = dlg.querySelector("[data-endereco-texto]");
+        function mostrarEndereco(d) {
+            form.elements.endereco.value = d ? textoEndereco(d) : "";
+            enderecoTitulo.textContent = d
+                ? "Entregar em (toque para editar)"
+                : "Dados para entrega";
+            enderecoTexto.textContent = form.elements.endereco.value;
+            enderecoTexto.hidden = !d;
+        }
+        const telaEntrega = document.querySelector("[data-entrega]");
+        const painelEntrega = telaEntrega
+            ? montarEntrega(telaEntrega, mostrarEndereco)
+            : null;
+        mostrarEndereco(U.sessao.ler("entrega"));
+        abrirEndereco.addEventListener(
+            "click",
+            () => painelEntrega && painelEntrega.abrir(),
+        );
         const pagar = dlg.querySelector("[data-pagar]");
         const enviar = dlg.querySelector("[data-enviar-whats]");
         const contagemEl = dlg.querySelector("[data-carrinho-contagem]");
@@ -730,12 +911,23 @@ window.Pedido = (function () {
         form.addEventListener("change", () => {
             const entrega = form.elements.entrega.value === "entrega";
             endereco.hidden = !entrega;
-            endereco.querySelector("textarea").required = entrega;
             desenhar();
         });
 
         function lerPedido() {
             if (!form.reportValidity()) return null;
+            // endereço fica num campo escondido: sem ele, abre o painel de entrega
+            if (
+                form.elements.entrega.value === "entrega" &&
+                !form.elements.endereco.value
+            ) {
+                if (painelEntrega)
+                    painelEntrega.abrir(
+                        "Falta só o endereço para a gente entregar.",
+                    );
+                else abrirEndereco.focus();
+                return null;
+            }
             return {
                 numero: numeroPedido(),
                 itens: itens.map((i) => ({ ...i })),
@@ -890,8 +1082,9 @@ window.Pedido = (function () {
                 if (a === link) {
                     if (a.getAttribute("aria-current") !== "true") {
                         a.setAttribute("aria-current", "true");
+                        // o escolhido fica onde o primeiro botão começa (sem pular para a borda)
                         barra.scrollTo({
-                            left: a.offsetLeft - barra.offsetLeft - 16,
+                            left: a.offsetLeft - links[0].offsetLeft,
                             behavior: "smooth",
                         });
                     }

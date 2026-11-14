@@ -16,8 +16,8 @@ Direção de cor aprovada: **pistache** (botões no verde do logo, texto chocola
 | Texto secundário (taupe escurecido) | `#6B5539` | `#FBF5EC` (creme) | 6,49:1 | ✅ |
 | Texto secundário (taupe escurecido) | `#6B5539` | `#FCE8EE` (rosa claro) | 6,0:1 | ✅ |
 | Texto claro | `#FBF5EC` | `#4B2A06` (chocolate) | 11,86:1 | ✅ |
-| Frase manuscrita (framboesa escurecida) | `#B0365D` | `#FBF5EC` (creme) | 5,49:1 | ✅ |
-| Frase manuscrita sobre chocolate | `#C3CC5F` | `#4B2A06` (chocolate) | 7,42:1 | ✅ |
+| Etiquetas e frases de destaque (framboesa escurecida) | `#B0365D` | `#FBF5EC` (creme) | 5,49:1 | ✅ |
+| Frase de destaque sobre chocolate | `#C3CC5F` | `#4B2A06` (chocolate) | 7,42:1 | ✅ |
 | Etiqueta de preço | `#4B2A06` | `#F9C2D2` (rosa) | 8,37:1 | ✅ |
 | Botão principal | `#4B2A06` | `#C3CC5F` (pistache) | 7,42:1 | ✅ |
 | Botão principal (passar o mouse) | `#4B2A06` | `#CFD77A` (pistache claro) | 8,36:1 | ✅ |
@@ -45,6 +45,6 @@ Ficam só como fundo (com texto escuro por cima) ou como enfeite:
 ## Ajustes feitos por causa do teste
 
 - **Taupe #9C8262**: nos textos secundários entrou um taupe escurecido, **#6B5539** (6,5:1). O original ficou só em bordas.
-- **Framboesa #E45A82**: para frases manuscritas sobre o creme entrou a **framboesa escurecida #B0365D** (5,5:1).
+- **Framboesa #E45A82**: para etiquetas e frases de destaque sobre o creme entrou a **framboesa escurecida #B0365D** (5,5:1).
 - **Rosa e pistache**: aparecem só como fundo, sempre com texto chocolate por cima.
 - **Prévias do Instagram e do iFood**: o azul e o vermelho dos apps foram escurecidos para o texto branco passar.

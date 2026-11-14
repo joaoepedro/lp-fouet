@@ -1,8 +1,8 @@
 /* =========================================================
    Estilo do site: Fouet Studio
    Pâtisserie elegante e acolhedora: creme, chocolate e rosa,
-   listras de toldo na moldura, janelas em arco e frases manuscritas.
-   A cor dos botões e da moldura muda com a direção (css/variables.css).
+   faixa de listras de toldo no rodapé, janelas em arco e frases em Gloock.
+   Cores e fontes vêm de css/variables.css (direção pistache).
    ========================================================= */
 
 /* 1. Base */
@@ -47,15 +47,16 @@ b {
 .secao__sub strong {
     color: var(--cor-texto);
 }
-/* frase manuscrita acima dos títulos */
-.secao__manuscrito {
-    font-family: var(--fonte-manuscrita);
-    font-size: clamp(2rem, 5vw, 2.6rem);
-    line-height: 1;
+/* etiqueta acima dos títulos ("feitos hoje", "sob encomenda"…) */
+.secao__etiqueta {
+    font-family: var(--fonte-texto);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
     color: var(--cor-acento);
-    margin-bottom: 0.15rem;
-    transform: rotate(-3deg);
-    transform-origin: left center;
+    margin-bottom: 0.6rem;
 }
 :focus-visible {
     outline: 3px solid var(--cor-texto);
@@ -334,9 +335,10 @@ b {
 }
 .abertura__frase {
     margin-top: clamp(0.75rem, 2svh, 1.25rem);
-    font-family: var(--fonte-manuscrita);
-    font-size: clamp(2.4rem, 7vw, 3.8rem);
-    line-height: 1.1;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     color: var(--cor-frase-escuro, var(--rosa));
     text-shadow: 0 2px 14px rgb(30 16 2 / 0.55);
 }
@@ -399,7 +401,7 @@ b {
 .cardapio .secao__sub {
     color: rgb(251 245 236 / 0.86);
 }
-.cardapio .secao__manuscrito {
+.cardapio .secao__etiqueta {
     color: var(--cor-frase-escuro, var(--rosa));
 }
 /* Atalhos fixos sob o topo, da vitrine até as festas (ficam dentro de .area-pedido) */
@@ -621,12 +623,12 @@ b {
 }
 .caixa__nota,
 .rodape__frase {
-    font-family: var(--fonte-manuscrita);
-    line-height: 1.1;
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
 }
 .caixa__nota {
     color: var(--cor-acento);
-    font-size: 2.3rem;
+    font-size: 1.6rem;
 }
 .caixa__mascote {
     width: 5.5rem;
@@ -722,7 +724,9 @@ textarea:focus-visible {
     padding: 1rem 1rem 1.25rem;
     border-radius: var(--raio);
     background: var(--cor-cartao);
-    box-shadow: 0 1px 0 var(--cor-linha), 0 0.75rem 2rem -1.25rem rgb(75 42 6 / 0.35);
+    box-shadow:
+        0 1px 0 var(--cor-linha),
+        0 0.75rem 2rem -1.25rem rgb(75 42 6 / 0.35);
 }
 .encomenda--festa {
     background: var(--cor-fundo);
@@ -982,7 +986,7 @@ details a {
     width: 14rem;
 }
 .rodape__frase {
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: var(--cor-frase-escuro, var(--rosa));
 }
 .rodape address {
@@ -1022,7 +1026,8 @@ details a {
     transform: translateY(120%);
     transition: transform 0.3s ease;
 }
-.barra-pedido[data-mostrar] {
+/* só depois da primeira tela (main.js marca o body com data-passou-abertura) */
+body[data-passou-abertura] .barra-pedido[data-mostrar] {
     transform: none;
 }
 .barra-pedido button {
@@ -1041,6 +1046,7 @@ details a {
     font-weight: 600;
     box-shadow: 0 0.75rem 2rem rgb(30 16 2 / 0.35);
 }
+body:not([data-passou-abertura]) .barra-pedido button,
 .barra-pedido:not([data-mostrar]) button {
     visibility: hidden;
 }
@@ -1054,7 +1060,9 @@ details a {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    background: var(--cor-destaque); /* pistache, ícone chocolate-escuro: 9,9:1 */
+    background: var(
+        --cor-destaque
+    ); /* pistache, ícone chocolate-escuro: 9,9:1 */
     color: #2a1703;
     box-shadow: 0 0.5rem 1.5rem rgb(30 16 2 / 0.3);
     opacity: 0;
@@ -1484,10 +1492,7 @@ select {
 .chamada__texto {
     text-align: center;
 }
-.chamada__texto .secao__manuscrito {
-    transform-origin: center;
-}
-.chamada__texto > p:not(.secao__manuscrito) {
+.chamada__texto > p:not(.secao__etiqueta) {
     margin: 1rem auto 0;
     max-width: 28rem;
     color: var(--cor-texto-suave);
@@ -1520,10 +1525,7 @@ select {
         text-align: left;
         justify-self: start;
     }
-    .chamada__texto .secao__manuscrito {
-        transform-origin: left center;
-    }
-    .chamada__texto > p:not(.secao__manuscrito) {
+    .chamada__texto > p:not(.secao__etiqueta) {
         margin-left: 0;
     }
     .chamada__botoes {
@@ -1764,4 +1766,95 @@ select {
 }
 .pagina__logo {
     width: 12rem;
+}
+
+/* 16. Entrega: botão no carrinho e painel com o endereço (o CEP preenche o resto) */
+.entrega-resumo {
+    display: grid;
+    gap: 0.4rem;
+}
+.entrega-resumo > small {
+    font-size: 0.85rem;
+    color: var(--cor-texto-suave);
+}
+.entrega-botao {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--cor-texto);
+    border-radius: 0.75rem;
+    background: var(--cor-cartao);
+    color: var(--cor-texto);
+    font-weight: 600;
+    text-align: left;
+}
+@media (hover: hover) {
+    .entrega-botao:hover {
+        background: var(--cor-fundo-alt);
+    }
+}
+.entrega-botao__corpo {
+    flex: 1;
+    display: grid;
+    gap: 0.15rem;
+}
+.entrega-botao__texto {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--cor-texto-suave);
+}
+.entrega-botao__seta {
+    flex: none;
+    color: var(--cor-texto);
+}
+.entrega .carrinho__topo {
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+.entrega__form {
+    padding-top: 1.25rem;
+}
+.entrega__intro {
+    color: var(--cor-texto-suave);
+}
+.entrega__cep {
+    display: grid;
+    grid-template-columns: minmax(0, 11rem) auto;
+    align-items: end;
+    gap: 0.5rem 1rem;
+}
+.entrega__cep a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+.entrega__status:empty {
+    display: none;
+}
+.entrega__status {
+    margin-top: -0.5rem;
+    font-size: 0.9rem;
+    color: var(--cor-texto-suave);
+}
+.entrega__status[data-tipo="erro"],
+.entrega__erro {
+    color: var(--cor-acento);
+    font-weight: 600;
+}
+.entrega__dupla {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0.75rem;
+}
+.entrega__dupla--cidade {
+    grid-template-columns: minmax(0, 1fr) 6.5rem;
 }

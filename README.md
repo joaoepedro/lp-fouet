@@ -35,7 +35,7 @@ public/                         ← só esta pasta vai para o ar
   assets/
     img/                        imagens em WebP (fotos dos produtos em 600 e 300 px) + favicons + og-capa.jpg
     video/                      vídeo da primeira tela (retrato para celular, paisagem para computador)
-    fonts/                      Gloock, Mrs Saint Delafield e Poppins (OFL) — ver "Fontes" abaixo
+    fonts/                      Gloock e Poppins (OFL) — ver "Fontes" abaixo
   robots.txt · sitemap.xml
   _headers                      cache, segurança e noindex da demonstração (Cloudflare)
 docs/                           auditoria.md, contraste.md, a-confirmar.md, cardapio-e-fotos.md, direcoes/ (as 3 propostas de cor)
@@ -46,9 +46,10 @@ identidade-fouet/               prancha da marca: logo, paleta e mascote (não v
 ## Fontes
 A marca usa **Rigot** (títulos/logo) e **Moontime** (manuscrita), que são pagas e não estavam na pasta.
 O logo é sempre imagem (recortado de `identidade-fouet/1.png`), então ele já está fiel. Nos textos entraram substitutas livres:
-**Gloock** no lugar da Rigot e **Mrs Saint Delafield** no lugar da Moontime, com **Poppins** no corpo (a mesma da prancha de identidade).
-Para usar as originais (com licença de uso na web): ponha os .woff2 em `assets/fonts`, troque os `@font-face` e os nomes em
-`--fonte-titulo` e `--fonte-manuscrita` no `css/variables.css`.
+**Gloock** no lugar da Rigot, com **Poppins** no corpo (a mesma da prancha de identidade).
+A manuscrita (Moontime) fica só no logo: no texto do site são **duas fontes apenas**, para manter tudo limpo e legível.
+Para usar a Rigot original (com licença de uso na web): ponha o .woff2 em `assets/fonts`, troque o `@font-face` e o nome em
+`--fonte-titulo` no `css/variables.css`.
 
 ## Convenções
 - **O JS só procura atributos `data-*`**, nunca classes. Lista de ganchos no topo de `js/main.js`.
