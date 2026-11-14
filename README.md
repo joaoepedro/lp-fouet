@@ -74,7 +74,7 @@ Workers & Pages › Create › Pages › Upload assets › enviar a pasta **publ
 - [ ] `config.js`: preencher `infiniteTag` (InfiniteTag da loja, sem o "$") e `modoDemonstracao: false`
 - [ ] `index.html`: apagar a linha `<meta name="robots" content="noindex, nofollow">`
 - [ ] `_headers`: apagar a linha `X-Robots-Tag: noindex`
-- [ ] Trocar `https://lp-fouet.pages.dev` pelo domínio definitivo em `index.html`, `robots.txt` e `sitemap.xml`
+- [ ] Trocar `https://fouetstudio.pages.dev` pelo domínio definitivo em `index.html`, `robots.txt` e `sitemap.xml`
 - [ ] Endereço (ou só a área de entrega) e horário também na ficha da empresa (`application/ld+json` no `index.html`)
 - [ ] Preencher os IDs de rastreamento em `config.js`, se houver, e atualizar a política de privacidade
 - [ ] Registrar o site no Google Search Console e enviar o `sitemap.xml`

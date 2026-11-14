@@ -662,6 +662,8 @@ textarea {
     border-radius: 0.75rem;
     background: var(--cor-cartao);
     color: var(--cor-texto);
+    /* 16 px no mínimo: com letra menor, o iPhone dá zoom ao tocar no campo e não volta */
+    font-size: max(1rem, 16px);
     font-weight: 400;
 }
 select:focus-visible,
